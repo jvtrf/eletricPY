@@ -1,5 +1,6 @@
 from math import sin, radians,cos,atan2,degrees,acos
-from numpy import linspace
+from numpy import angle, linspace
+from pandas import pivot
 
 def angle_sin(ang):
     #Calcula o seno de um angulo
@@ -72,30 +73,75 @@ def perpendicular_point(A,B,d,p = 0.5, dir = 0):
     pass
 
 def draw_curve(A,B,d,dir = 0):
-    inter_point,head = perpendicular_point(A,B,d,p = 0.5,dir = dir)
-    
-    vec_1 = get_vec_A_B(head,A)
-    vec_2 = get_vec_A_B(head,B)
+    # Somente para vetores do tipo ' / ' (primeiro ou terceiro quadrante)
+    # Recebe dois pontos, esses dois pontos devem formar um vetor
+    # no primeiro ou no terceiro quadrante.
+    #
+    # O parametro d é o tamanho do raio da circunferência que pega os dois pontos.
+    # Quanto maior o d menos curvado é aligação entre os dois pontos.
+    # Caso d seja zero a curva será a semicircunferência que liga os dois pontos.
+    #
+    # Retorna os pontos da curva: points
+    # Retorna o head do vetor perpendicular a reta AB: head.
+    # Retorna os angulos utilizados pra fazer a curva.
+    # Return points,head,angles
 
-    line = get_vec_A_B(A,B)
+    quad = get_quadrant(get_vec_A_B(A,B))
+    
+    print(quad)#debug
+    
+    A,B = set_quad_to_1(A,B) #Garante que o vetor esteja no primeiro quadrante
+
+    inter_point,head = perpendicular_point(A,B,d,p = 0.5,dir = dir)
+    # Encontra o ponto perpendicular ao ponto médio da linha que liga os dois pontos ( A e B ).
+
+    vec_1 = get_vec_A_B(head,A) # Obtem o vetore que vai do ponto perpendicular até o ponto A
+    vec_2 = get_vec_A_B(head,B) # Obtem o vetore que vai do ponto perpendicular até o ponto B
 
     raio = get_vec_module(vec_1) #Tamanho do raio 
 
     
     ang1 = angle_vector(vec_1)
+    # Ângulo inicial.
     ang2 = angle_vector(vec_2) + dir*360
+    # Ângulo final.
 
     angles = linspace(ang1,ang2,20).tolist()
     angles = [round(a,2) for a in angles]
 
-    print(ang1,ang2)
     points =  [(head[0]+raio*angle_cos(a),head[1]+raio*angle_sin(a)) for a in angles]
     
     points = [(round(p[0],2),round(p[1],2)) for p in points]
 
-    
+    if quad == 4 or quad == 2:
+        print("hello")
+        points = rotate_points(points,get_mid_p(A,B),90 + dir*360)
+        head = rotate_points([head],get_mid_p(A,B),90 + dir*360)[0]
+        angles = [a+90 + dir*360 for a in angles]
 
-    return points,head
+    return points,head,angles
+
+def draw_curve_quad_4(A,B,d,p = 0.5, dir = 0):
+    
+    pass
+
+def rotate_points(points,pivo,rot_ang = 0):
+    # Rotaciona um conjunto de pontos em relação a um pivo.
+    # Recebe um conjunto de pontos : 'points'.
+    # Recebe um pivo (eixo de rotação).
+    # Recebe um angulo de rotação: 'rot_ang'.
+    #
+    # Retorna os pontos rotacionados: Return rotate_points.
+
+    raios = [distance(p,pivo) for p in points]
+
+    angles = [angle_vector(get_vec_A_B(pivo,p)) for p in points]
+
+    rotate_points = [(pivo[0] + raios[i]*angle_cos(rot_ang + angles[i]),
+                      pivo[1] + raios[i]*angle_sin(rot_ang + angles[i]) )for i in range(len(angles))]
+
+    return rotate_points
+    pass
 
 def get_vec_A_B(A,B):
     #Retorna o vetor AB (indo de A para B).
@@ -116,3 +162,35 @@ def get_angle_between(vec1,vec2):
     return acos(cos_ang)
     pass
 
+def get_quadrant(vec):
+    #Retorna qual quadrante está o vetor.
+
+    ang = angle_vector(vec)
+    
+    if (ang <=0 and ang>=-90) or (ang<=360 and ang>=270):
+        return 1
+    if (ang <= -90 and ang>=-180) or (ang<270 and ang>=180):
+        return 2
+    if (ang < -180 and ang>=-270) or (ang<180 and ang>=90):
+        return 3
+    if (ang < -270 and ang>=-360) or (ang<90 and ang>=0):
+        return 4
+
+def set_quad_to_1(A,B):
+    vec = get_vec_A_B(A,B) # Vetor que liga os dois pontos
+    quad = get_quadrant(vec) # Quadrante do vetor calculado na linha anterior.
+
+    if quad == 3:
+        #Garante que o vetor esteja sempre no primeiro quadrante.
+        a = A; b = B
+        A = b; B = a
+    
+    if quad == 4:
+        points = rotate_points([A,B],get_mid_p(A,B),-90)
+        A,B = points[0],points[1]
+    
+    if quad == 2:
+        points = rotate_points([A,B],get_mid_p(A,B),90)
+        A,B = points[0],points[1]
+
+    return A,B
