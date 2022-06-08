@@ -88,8 +88,6 @@ def draw_curve(A,B,d,dir = 0):
 
     quad = get_quadrant(get_vec_A_B(A,B))
     
-    print(quad)#debug
-    
     A,B = set_quad_to_1(A,B) #Garante que o vetor esteja no primeiro quadrante
 
     inter_point,head = perpendicular_point(A,B,d,p = 0.5,dir = dir)
@@ -121,9 +119,6 @@ def draw_curve(A,B,d,dir = 0):
 
     return points,head,angles
 
-def draw_curve_quad_4(A,B,d,p = 0.5, dir = 0):
-    
-    pass
 
 def rotate_points(points,pivo,rot_ang = 0):
     # Rotaciona um conjunto de pontos em relação a um pivo.
@@ -192,5 +187,15 @@ def set_quad_to_1(A,B):
     if quad == 2:
         points = rotate_points([A,B],get_mid_p(A,B),90)
         A,B = points[0],points[1]
+
+    return A,B
+
+def draw_radio_line(center,d1,d2,angle):
+    # Desenha uma reta baseada num angulo
+    # A reta começa a ser desenhada a uma distância d1 do centro
+    # e termina a uma distância d2 do centro.
+
+    A = (center[0]+d1*angle_cos(angle),center[1]+d1*angle_sin(angle))
+    B = (center[0]+d2*angle_cos(angle),center[1]+d2*angle_sin(angle))
 
     return A,B
