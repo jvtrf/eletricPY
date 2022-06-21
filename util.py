@@ -1,4 +1,5 @@
 from math import sin, radians,cos,atan2,degrees,acos
+from tkinter import font
 from numpy import angle, linspace
 from pandas import pivot
 
@@ -34,13 +35,13 @@ def percent_line(A,B,p):
         point = B[0] - p*d*angle_cos(ang), B[1] - p*d*angle_sin(ang)
     return point
 
-def create_circle(canvas,c,r):
+def create_circle(canvas,c,r,color = 'red'):
     # Cria uma cricunferencia vermelha, com centro "c" e rairo "r".
     # Utilizado pra debugar.
 
     p1 = c[0]-r,c[1]-r
     p2 = c[0]+r,c[1]+r
-    canvas.create_oval(p1,p2,fill='red')
+    canvas.create_oval(p1,p2,fill=color)
 
 def get_mid_p(A,B):
     # Obtem o midpoint da reta.
@@ -77,7 +78,7 @@ def draw_curve(A,B,d,dir = 0):
     # Recebe dois pontos, esses dois pontos devem formar um vetor
     # no primeiro ou no terceiro quadrante.
     #
-    # O parametro d é o tamanho do raio da circunferência que pega os dois pontos.
+    # O parametro "d" é o tamanho do raio da circunferência que pega os dois pontos.
     # Quanto maior o d menos curvado é aligação entre os dois pontos.
     # Caso d seja zero a curva será a semicircunferência que liga os dois pontos.
     #
@@ -118,7 +119,6 @@ def draw_curve(A,B,d,dir = 0):
         angles = [a+90 + dir*360 for a in angles]
 
     return points,head,angles
-
 
 def rotate_points(points,pivo,rot_ang = 0):
     # Rotaciona um conjunto de pontos em relação a um pivo.
@@ -172,6 +172,7 @@ def get_quadrant(vec):
         return 4
 
 def set_quad_to_1(A,B):
+    #Verifica qual quadrante está o vetor AB.
     vec = get_vec_A_B(A,B) # Vetor que liga os dois pontos
     quad = get_quadrant(vec) # Quadrante do vetor calculado na linha anterior.
 
@@ -199,3 +200,39 @@ def draw_radio_line(center,d1,d2,angle):
     B = (center[0]+d2*angle_cos(angle),center[1]+d2*angle_sin(angle))
 
     return A,B
+
+def draw_text(canvas,center,text,size):
+    # Desenha um text em um canvas.
+    # Com acora no "center".
+    # Receve um "canvas".
+    # Recebe uma coordenada (tupla) "centro".
+    # Recebe uma string "texto".
+
+    canvas.create_text(center[0],center[1],text = text,font = ('Helvetica',str(size),'bold'))
+
+def draw_circle_by_angle(center,radius,angle1,angle2):
+    # Desenha um arco entre o angle1 e o angle2.
+    # Recebe o centro do arco :"center".
+    # Recebe o raio: "radius"
+    # O ângulo inicial: "angle1"
+    # O ângulo final: "angle2"
+    #
+    #Retorna os pontos do arco.
+
+    angles = linspace(angle1,angle2,20).tolist()
+    angles = [round(a,2) for a in angles]
+
+    points = [(center[0] + radius*angle_cos(a),center[1] + radius*angle_sin(a)) for a in angles]
+    return points
+
+def get_radius_point(center,radius,angle):
+    # Obtem um ponto dentro da circunferência através de um angulo
+    # Recebe um centro: "center".
+    # Recebe um raio: "radius".
+    # Recebe o angulo da posição desejada: "angle".
+    #
+    #Retorna a posição do ponto desejado: "point".
+    
+
+    point = (center[0] + radius*angle_cos(angle),center[1] + radius*angle_sin(angle))
+    return point
