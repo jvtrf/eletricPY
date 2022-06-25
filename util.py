@@ -208,7 +208,7 @@ def draw_text(canvas,center,text,size):
     # Recebe uma coordenada (tupla) "centro".
     # Recebe uma string "texto".
 
-    canvas.create_text(center[0],center[1],text = text,font = ('Helvetica',str(size),'bold'))
+     return canvas.create_text(center[0],center[1],text = text,font = ('Helvetica',str(size),'bold'))
 
 def draw_circle_by_angle(center,radius,angle1,angle2):
     # Desenha um arco entre o angle1 e o angle2.
@@ -236,3 +236,12 @@ def get_radius_point(center,radius,angle):
 
     point = (center[0] + radius*angle_cos(angle),center[1] + radius*angle_sin(angle))
     return point
+
+def get_widget_box(canvas,widget):
+    #Calcula a altura (height) e a largura(width) de um widget.
+    #Retorna (height,width)
+    bounds  = canvas.bbox(widget) 
+    width   = bounds[2] - bounds[0]
+    height  = bounds[3] - bounds[1]
+
+    return height,width
