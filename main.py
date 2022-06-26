@@ -1,5 +1,5 @@
 import tkinter as tk
-from Comodos import Square_comodo_in_dim
+from Comodo import Square_comodo_in_dim
 from Lampada import Lampada
 
 root = tk.Tk()

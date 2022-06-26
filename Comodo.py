@@ -1,14 +1,18 @@
 import math
 
 class Square_comodo_in_dim:
-    def __init__(self,eL,eR,eT,eB,horizotal_dim,vertical_dim,s_x,s_y,canvas) -> None:
+    def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None) -> None:
+        
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+        
         s = s_x,s_y
         f = (s[0]+horizotal_dim,s[1]+vertical_dim)
         points = (s[0]-eL,s[1]-eT,f[0]+eR,f[1]+ eB)
 
-        color = 'black'
-        canvas.create_rectangle(points,fill=color)
-        canvas.create_rectangle(s[0],s[1],f[0],f[1],fill='white')
+        color = 'grey'
+        canvas.create_rectangle(points,fill=color,outline = '')
+        canvas.create_rectangle(s[0],s[1],f[0],f[1],fill='white',outline = 'black')
 
         self.bottom_dim = horizotal_dim
         self.top_dim = horizotal_dim
@@ -163,70 +167,74 @@ class Square_comodo_in_dim:
     def create_top_indoor(self,ld,w,clock='a'):
         sp1,sp2 = self.create_top_space(ld,w)
         if clock == 'a':
-            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(w,-1,-1)]
+            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,(points[-1][0],points[-1][1]-w-1),smooth = 1)
             self.canvas.create_rectangle(sp1,(sp1[0]+self.door_w,sp1[1]+w))
         if clock == 'b':
-            points = [(-x+sp1[0]+w,(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(w,-1,-1)]
+            points = [(-x+sp1[0]+w,(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,sp2,smooth = 1)
             self.canvas.create_rectangle((sp1[0]+w-self.door_w,sp1[1]),points[-1])
     
     def create_top_outdoor(self,ld,w,clock='a'):
         sp1,sp2 = self.create_top_space(ld,w)
         if clock == 'a':
-            points = [(x+sp1[0],(-math.sqrt(w**2 - x**2))+sp1[1]-self.eT)  for x in range(w,-1,-1)]
+            points = [(x+sp1[0],(-math.sqrt(w**2 - x**2))+sp1[1]-self.eT)  for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,sp1,smooth = 1)
             self.canvas.create_rectangle((sp1[0],sp1[1]-w-self.eT),(sp1[0]+self.door_w,sp1[1]-self.eT))
         if clock == 'b':
-            points = [(-x+sp1[0]+w,(-math.sqrt(w**2 - x**2))+sp1[1]-self.eT)  for x in range(w,-1,-1)]
+            points = [(-x+sp1[0]+w,(-math.sqrt(w**2 - x**2))+sp1[1]-self.eT)  for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,sp2,smooth = 1)
             self.canvas.create_rectangle((sp1[0]+w-self.door_w,sp1[1]-w-self.eT),(sp1[0]+w,sp1[1]-self.eT))
     
     def create_botton_outdoor(self,ld,w,clock='a'):
         sp1,sp2 = self.create_botton_space(ld,w)
         if clock == 'a':
-            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1]+self.eB)  for x in range(w,-1,-1)]
+            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1]+self.eB)  for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,(points[-1][0],points[-1][1]-w-1),smooth = 1)
             self.canvas.create_rectangle((sp1[0],sp1[1]+self.eB),(sp1[0]+self.door_w,sp1[1]+w+self.eB))
         if clock == 'b':
-            points = [(-x+sp1[0]+w,(math.sqrt(w**2 - x**2))+sp1[1]+self.eB) for x in range(w,-1,-1)]
+            points = [(-x+sp1[0]+w,(math.sqrt(w**2 - x**2))+sp1[1]+self.eB) for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,sp2,smooth = 1)
             self.canvas.create_rectangle((sp1[0]+w-self.door_w,sp1[1]+self.eB),points[-1])
             
     def create_botton_indoor(self,ld,w,clock='b'):
         sp1,sp2 = self.create_botton_space(ld,w)
         if clock == 'a':
-            points = [(x+sp1[0],(-math.sqrt(w**2 - x**2))+sp1[1])  for x in range(w,-1,-1)]
+            points = [(x+sp1[0],(-math.sqrt(w**2 - x**2))+sp1[1])  for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,sp1,smooth = 1)
             self.canvas.create_rectangle((sp1[0],sp1[1]-w),(sp1[0]+self.door_w,sp1[1]))
         if clock == 'b':
-            points = [(-x+sp1[0]+w,(-math.sqrt(w**2 - x**2))+sp1[1])  for x in range(w,-1,-1)]
+            points = [(-x+sp1[0]+w,(-math.sqrt(w**2 - x**2))+sp1[1])  for x in range(int(w),-1,-1)]
             self.canvas.create_line(points,sp2,smooth = 1)
             self.canvas.create_rectangle((sp1[0]+w-self.door_w,sp1[1]-w),(sp1[0]+w,sp1[1]))
 
     def create_left_indoor(self,tp,w,clock='a'):
         sp1,sp2 = self.create_left_space(tp,w)
         if clock == 'a':
-            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(w,-1,-1)]
+            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(int(w),-1,-1)]
             self.canvas.create_line(sp1,points,sp2,smooth = 0)
             self.canvas.create_rectangle((sp1),(sp1[0]+w,sp1[1]+self.door_w))
         if clock == 'b':
-            points = [(x+sp1[0],(-math.sqrt(w**2 - x**2))+sp1[1]+w)  for x in range(w,-2,-1)]
+            points = [(x+sp1[0],(-math.sqrt(w**2 - x**2))+sp1[1]+w)  for x in range(int(w),-2,-1)]
             self.canvas.create_line(sp2,points,smooth = 0)
             self.canvas.create_rectangle((sp2[0]+self.eL,sp2[1]),(sp2[0]+self.eL+w+1,sp2[1]-self.door_w))
     
     def create_right_indoor(self,tp,w,clock='b'):
         sp1,sp2 = self.create_right_space(tp,w)
         if clock == 'a':
-            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(w,-1,-1)]
+            points = [(x+sp1[0],(math.sqrt(w**2 - x**2))+sp1[1])  for x in range(int(w),-1,-1)]
             self.canvas.create_line(sp1,points,sp2,smooth = 0)
             self.canvas.create_rectangle((sp1[0]+self.eR,sp1[1]),(sp1[0]+w,sp1[1]+self.door_w))
         if clock == 'b':
-            points = [(x+sp2[0],(-math.sqrt(w**2 - x**2))+sp2[1])  for x in range(w,-2,-1)]
+            points = [(x+sp2[0],(-math.sqrt(w**2 - x**2))+sp2[1])  for x in range(int(w),-2,-1)]
             self.canvas.create_line(sp2,points,smooth = 0)
             self.canvas.create_rectangle((sp2),(sp2[0]+w,sp2[1]-self.door_w))
     
-    def join_botton(self,eL,eR,eT,eB,horizotal_dim,vertical_dim,point = 'F'):
+    def join_botton(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'F',e = None):
+        
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
         if point == 'F':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
                                         s_x = self.F[0],s_y = self.F[1],canvas = self.canvas)
@@ -243,7 +251,26 @@ class Square_comodo_in_dim:
             self.area = self.area + comodo.area + (eT*horizotal_dim)
             return comodo
     
-    def join_top(self,eL,eR,eT,eB,horizotal_dim,vertical_dim,point = 'B'):
+    def add_botton(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'F',e = None):
+        
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
+        if point == 'F':
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.F[0],s_y = self.F[1],canvas = self.canvas)
+
+            return comodo
+        elif point == 'G':
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.F[0] + (self.bottom_dim - horizotal_dim),s_y = self.F[1],canvas = self.canvas)
+            return comodo
+    
+    def join_top(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'B',e = None):
+
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
         if point == 'B':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
                                         s_x = self.B[0],s_y = self.B[1]-horizotal_dim,canvas = self.canvas)
@@ -259,8 +286,30 @@ class Square_comodo_in_dim:
 
             self.area = self.area + comodo.area + (eB*horizotal_dim)
             return comodo
-    
-    def join_right(self,eL,eR,eT,eB,horizotal_dim,vertical_dim,point = 'D'):
+        
+    def add_top(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'B',e = None):
+
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
+        if point == 'B':
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.B[0],s_y = self.B[1]-horizotal_dim,canvas = self.canvas)
+
+            return comodo
+        elif point == 'C':
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.B[0] + (self.bottom_dim - horizotal_dim),s_y = self.B[1] - vertical_dim,canvas = self.canvas)
+            self.canvas.create_rectangle((comodo.F[0]+1,comodo.F[1]+1),comodo.br_inp,fill = 'white',width = 0)
+
+            self.area = self.area + comodo.area + (eB*horizotal_dim)
+            return comodo
+
+    def join_right(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'D',e = None):
+
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
         if point == 'D':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
                                         s_x = self.D[0],s_y = self.D[1],canvas = self.canvas)
@@ -279,7 +328,25 @@ class Square_comodo_in_dim:
             
             return comodo
     
-    def join_left(self,eL,eR,eT,eB,horizotal_dim,vertical_dim,point = 'A'):
+    def add_right(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'D',e = None):
+
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
+        if point == 'D':
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.D[0],s_y = self.D[1],canvas = self.canvas)
+            return comodo
+        elif point == 'H':
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.D[0] ,s_y = self.D[1]+ (self.left_dim - vertical_dim),canvas = self.canvas)
+            return comodo
+    
+    def join_left(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'A', e = None):
+
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
         if point == 'A':
             #Encaixa o ponto tr_inp do novo comodo no ponto A do comodo atual.
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
@@ -294,6 +361,21 @@ class Square_comodo_in_dim:
             self.canvas.create_rectangle((comodo.tr_inp[0],comodo.tr_inp[1]+1),(comodo.H[0]+1,comodo.H[1]),fill = 'white',width = 0)
 
             self.area = self.area + comodo.area + (eR*vertical_dim)
+            return comodo
+    
+    def add_left(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'A', e = None):
+
+        if e != None:
+            eL = e ; eR = e ; eT = e ; eB = e
+
+        if point == 'A':
+            #Encaixa o ponto tr_inp do novo comodo no ponto A do comodo atual.
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.A[0] - horizotal_dim, s_y = self.A[1],canvas = self.canvas)
+            return comodo
+        elif point == 'E':
+            comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
+                                        s_x = self.A[0] - horizotal_dim ,s_y = self.A[1]+ (self.left_dim - vertical_dim),canvas = self.canvas)
             return comodo
     
     def rect_area(sef,p1,p2):
