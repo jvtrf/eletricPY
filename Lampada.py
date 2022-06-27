@@ -1,3 +1,6 @@
+from turtle import width
+
+
 class Lampada:
     def __init__(self,canvas,centro,raio,pot,id,circ) -> None:
         self.canvas = canvas
@@ -15,15 +18,15 @@ class Lampada:
         p2x = p1x + 2*self.raio
         p2y = p1y + 2*self.raio
 
-        self.canvas.create_oval(p1x,p1y,p2x,p2y)
+        self.canvas.create_oval(p1x,p1y,p2x,p2y,width=2)
 
-        self.left_p = (p1x,p1y+self.raio)                   #Pontos Tangentes Da circunferência
-        self.right_p = (p1x + 2*self.raio,p1y+self.raio)
-        self.down_p = (p1x + self.raio,p2y)
-        self.top_p = (p1x + self.raio,p1y)
+        self.left = (p1x,p1y+self.raio)                   #Pontos Tangentes Da circunferência
+        self.right = (p1x + 2*self.raio,p1y+self.raio)
+        self.botton = (p1x + self.raio,p2y)
+        self.top = (p1x + self.raio,p1y)
 
-        self.canvas.create_line(self.left_p,self.right_p)
-        self.canvas.create_line(self.centro,self.down_p)
+        self.canvas.create_line(self.left,self.right)
+        self.canvas.create_line(self.centro,self.botton)
 
         #ID
         idpos = (self.centro[0]+self.raio/2.5,self.centro[1]+self.raio/2.5)

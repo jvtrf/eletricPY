@@ -1,7 +1,11 @@
+import imp
 import math
 
+from util import percent_line,shift_points
+from Interruptor import Interruptor_s1,Interruptor_s2,Interruptor_s3,Interruptor_3way,Interruptor_4way
+
 class Square_comodo_in_dim:
-    def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None) -> None:
+    def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None,scale = 0) -> None:
         
         if e != None:
             eL = e ; eR = e ; eT = e ; eB = e
@@ -23,6 +27,7 @@ class Square_comodo_in_dim:
         self.right_m = (f[0]+eR/2),(s[1]+f[1])/2
         self.top_m = (s[0]+f[0])/2, (s[1]-eT/2)
         self.botton_m = (s[0]+f[0])/2, (f[1]+eB/2)
+        self.center = (self.top_m[0],self.left_m[1])
         
         self.eL = eL #Espessura
         self.eR = eR
@@ -38,6 +43,7 @@ class Square_comodo_in_dim:
         self.tr_inp = s_x+horizotal_dim,s_y
         self.dl_inp = f[0]-horizotal_dim,f[1]
         self.br_inp = f
+        self.bl_inp = self.br_inp[0]-horizotal_dim,self.br_inp[1]
 
         self.tl_outp = s_x - self.eL, s_y - self.eT     #Pontos externos
         self.tr_outp = self.tr_inp[0] +self.eR, self.tr_inp[1] - self.eT
@@ -53,8 +59,10 @@ class Square_comodo_in_dim:
         self.G = self.br_inp[0], self.br_inp[1] + self.eB
         self.H = self.br_inp[0] + self.eR , self.br_inp[1]
 
-        self.area = vertical_dim * horizotal_dim
-        self.perimetro = vertical_dim*2 + horizotal_dim*2
+        self.area = (vertical_dim/scale) * (horizotal_dim/scale)
+        self.perimetro = (vertical_dim*2/scale) + (horizotal_dim*2/scale)
+
+        self.scale = scale
 
 
         self.door_w = 5         #Config
@@ -237,18 +245,18 @@ class Square_comodo_in_dim:
 
         if point == 'F':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.F[0],s_y = self.F[1],canvas = self.canvas)
+                                        s_x = self.F[0],s_y = self.F[1],canvas = self.canvas,scale=self.scale)
             self.canvas.create_rectangle((comodo.tl_inp[0]+1,comodo.tl_inp[1]+1),comodo.C,fill = 'white',width = 0)
 
-            self.area = self.area + comodo.area + (eT*horizotal_dim)
+            self.area = self.area + comodo.area + (eT*horizotal_dim)/(self.scale**2)
 
             return comodo
         elif point == 'G':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.F[0] + (self.bottom_dim - horizotal_dim),s_y = self.F[1],canvas = self.canvas)
+                                        s_x = self.F[0] + (self.bottom_dim - horizotal_dim),s_y = self.F[1],canvas = self.canvas,scale = self.scale)
             self.canvas.create_rectangle((comodo.tl_inp[0]+1,comodo.tl_inp[1]+1),(comodo.C),fill = 'white',width = 0)
 
-            self.area = self.area + comodo.area + (eT*horizotal_dim)
+            self.area = self.area + comodo.area + (eT*horizotal_dim)/(self.scale**2)
             return comodo
     
     def add_botton(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'F',e = None):
@@ -258,12 +266,12 @@ class Square_comodo_in_dim:
 
         if point == 'F':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.F[0],s_y = self.F[1],canvas = self.canvas)
+                                        s_x = self.F[0],s_y = self.F[1],canvas = self.canvas,scale = self.scale)
 
             return comodo
         elif point == 'G':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.F[0] + (self.bottom_dim - horizotal_dim),s_y = self.F[1],canvas = self.canvas)
+                                        s_x = self.F[0] + (self.bottom_dim - horizotal_dim),s_y = self.F[1],canvas = self.canvas,scale = self.scale)
             return comodo
     
     def join_top(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'B',e = None):
@@ -273,18 +281,18 @@ class Square_comodo_in_dim:
 
         if point == 'B':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.B[0],s_y = self.B[1]-horizotal_dim,canvas = self.canvas)
+                                        s_x = self.B[0],s_y = self.B[1]-horizotal_dim,canvas = self.canvas,scale = self.scale)
             self.canvas.create_rectangle((comodo.F[0]+1,comodo.F[1]+1),comodo.br_inp,fill = 'white',width = 0)
 
-            self.area = self.area + comodo.area + (eB*horizotal_dim)
+            self.area = self.area + comodo.area + (eB*horizotal_dim)/(self.scale**2)
 
             return comodo
         elif point == 'C':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.B[0] + (self.bottom_dim - horizotal_dim),s_y = self.B[1] - vertical_dim,canvas = self.canvas)
+                                        s_x = self.B[0] + (self.bottom_dim - horizotal_dim),s_y = self.B[1] - vertical_dim,canvas = self.canvas,scale = self.scale)
             self.canvas.create_rectangle((comodo.F[0]+1,comodo.F[1]+1),comodo.br_inp,fill = 'white',width = 0)
 
-            self.area = self.area + comodo.area + (eB*horizotal_dim)
+            self.area = self.area + comodo.area + (eB*horizotal_dim)/(self.scale**2)
             return comodo
         
     def add_top(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'B',e = None):
@@ -294,15 +302,12 @@ class Square_comodo_in_dim:
 
         if point == 'B':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.B[0],s_y = self.B[1]-horizotal_dim,canvas = self.canvas)
+                                        s_x = self.B[0],s_y = self.B[1]-horizotal_dim,canvas = self.canvas,scale = self.scale)
 
             return comodo
         elif point == 'C':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.B[0] + (self.bottom_dim - horizotal_dim),s_y = self.B[1] - vertical_dim,canvas = self.canvas)
-            self.canvas.create_rectangle((comodo.F[0]+1,comodo.F[1]+1),comodo.br_inp,fill = 'white',width = 0)
-
-            self.area = self.area + comodo.area + (eB*horizotal_dim)
+                                        s_x = self.B[0] + (self.bottom_dim - horizotal_dim),s_y = self.B[1] - vertical_dim,canvas = self.canvas,scale = self.scale)
             return comodo
 
     def join_right(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'D',e = None):
@@ -312,19 +317,19 @@ class Square_comodo_in_dim:
 
         if point == 'D':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.D[0],s_y = self.D[1],canvas = self.canvas)
+                                        s_x = self.D[0],s_y = self.D[1],canvas = self.canvas,scale = self.scale)
             
             self.canvas.create_rectangle((comodo.tl_inp[0]+1,comodo.tl_inp[1]+1),comodo.E,fill = 'white',width = 0)
 
-            self.area = self.area + comodo.area + (eL*vertical_dim)
+            self.area = self.area + comodo.area + (eL*vertical_dim)/(self.scale**2)
 
             return comodo
         elif point == 'H':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.D[0] ,s_y = self.D[1]+ (self.left_dim - vertical_dim),canvas = self.canvas)
+                                        s_x = self.D[0] ,s_y = self.D[1]+ (self.left_dim - vertical_dim),canvas = self.canvas,scale = self.scale)
             self.canvas.create_rectangle((comodo.tl_inp[0]+1,comodo.tl_inp[1]+1),comodo.E,fill = 'white',width = 0)
 
-            self.area = self.area + comodo.area + (eL*vertical_dim)
+            self.area = self.area + comodo.area + (eL*vertical_dim)/(self.scale**2)
             
             return comodo
     
@@ -335,11 +340,11 @@ class Square_comodo_in_dim:
 
         if point == 'D':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.D[0],s_y = self.D[1],canvas = self.canvas)
+                                        s_x = self.D[0],s_y = self.D[1],canvas = self.canvas,scale = self.scale)
             return comodo
         elif point == 'H':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.D[0] ,s_y = self.D[1]+ (self.left_dim - vertical_dim),canvas = self.canvas)
+                                        s_x = self.D[0] ,s_y = self.D[1]+ (self.left_dim - vertical_dim),canvas = self.canvas,scale = self.scale)
             return comodo
     
     def join_left(self,eL = 0,eR = 0,eT = 0,eB = 0 ,horizotal_dim = 0 ,vertical_dim = 0,point = 'A', e = None):
@@ -350,14 +355,14 @@ class Square_comodo_in_dim:
         if point == 'A':
             #Encaixa o ponto tr_inp do novo comodo no ponto A do comodo atual.
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.A[0] - horizotal_dim, s_y = self.A[1],canvas = self.canvas)
+                                        s_x = self.A[0] - horizotal_dim, s_y = self.A[1],canvas = self.canvas,scale = self.scale)
             self.canvas.create_rectangle((comodo.tr_inp[0],comodo.tr_inp[1]+1),(comodo.H[0]+1,comodo.H[1]),fill = 'white',width = 0)
 
             self.area = self.area + comodo.area + (eR*vertical_dim)
             return comodo
         elif point == 'E':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.A[0] - horizotal_dim ,s_y = self.A[1]+ (self.left_dim - vertical_dim),canvas = self.canvas)
+                                        s_x = self.A[0] - horizotal_dim ,s_y = self.A[1]+ (self.left_dim - vertical_dim),canvas = self.canvas,scale = self.scale)
             self.canvas.create_rectangle((comodo.tr_inp[0],comodo.tr_inp[1]+1),(comodo.H[0]+1,comodo.H[1]),fill = 'white',width = 0)
 
             self.area = self.area + comodo.area + (eR*vertical_dim)
@@ -371,13 +376,103 @@ class Square_comodo_in_dim:
         if point == 'A':
             #Encaixa o ponto tr_inp do novo comodo no ponto A do comodo atual.
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.A[0] - horizotal_dim, s_y = self.A[1],canvas = self.canvas)
+                                        s_x = self.A[0] - horizotal_dim, s_y = self.A[1],canvas = self.canvas,scale = self.scale)
             return comodo
         elif point == 'E':
             comodo = Square_comodo_in_dim(eL,eR,eT,eB,horizotal_dim,vertical_dim,
-                                        s_x = self.A[0] - horizotal_dim ,s_y = self.A[1]+ (self.left_dim - vertical_dim),canvas = self.canvas)
+                                        s_x = self.A[0] - horizotal_dim ,s_y = self.A[1]+ (self.left_dim - vertical_dim),canvas = self.canvas,scale = self.scale)
             return comodo
     
+    def add_right_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+        t_p = percent_line(self.tr_inp,self.br_inp,percent)
+        tomada = tug(canvas=self.canvas,angle=-90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount)
+        return tomada
+
+    def add_left_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+        t_p =  percent_line(self.tl_inp,self.bl_inp,percent)
+        tomada = tug(canvas=self.canvas,angle=90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount)
+        return tomada
+
+    def add_top_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+        t_p = percent_line(self.tl_inp,self.tr_inp,percent)
+        tomada = tug(canvas=self.canvas,angle=180,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount)
+        return tomada
+
+    def add_botton_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+        t_p = percent_line(self.bl_inp,self.br_inp,percent)
+        tomada = tug(canvas=self.canvas,angle=0,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount)
+        return tomada
+    
+    def add_right_fonte(self,fonte,dim = 30,percent = 0.5):
+        t_p = percent_line(self.tr_inp,self.br_inp,percent)
+        t_p = t_p[0]+self.eR/2,t_p[1]
+        fonte = fonte(self.canvas,w = self.eR ,h = dim,center = t_p)
+        return fonte
+    
+    def add_left_fonte(self,fonte,dim = 30,percent = 0.5):
+        t_p = percent_line(self.tl_inp,self.bl_inp,percent)
+        t_p = t_p[0]-self.eL/2,t_p[1]
+        fonte = fonte(self.canvas,w = self.eL,h = dim,center = t_p)
+        return fonte
+    
+    def add_top_fonte(self,fonte,dim = 30,percent = 0.5):
+        t_p = percent_line(self.tl_inp,self.tr_inp,percent)
+        t_p = t_p[0],t_p[1] - self.eT/2
+        fonte = fonte(self.canvas,w = dim,h = self.eT,center = t_p)
+        return fonte
+
+    def add_botton_fonte(self,fonte,dim = 30,percent = 0.5):
+        t_p = percent_line(self.bl_inp,self.br_inp,percent)
+        t_p = t_p[0],t_p[1] - self.eB/2
+        fonte = fonte(self.canvas,w = dim,h = self.eT,center = t_p)
+        return fonte
+
+    def add_interruptor(self,wall = 'top',inter = "s1",shift = 5, percent = 0.5,radius = 10,label1='a',label2= 'b',label3= 'c'):
+        if wall =='right':
+            t_p = percent_line(self.tr_inp,self.br_inp,percent)
+            center = (t_p[0]-radius - shift,t_p[1])
+            if percent>=0.5: angle = 135
+            else: angle = -135
+        if wall == 'left':
+            t_p = percent_line(self.tl_inp,self.bl_inp,percent)
+            center = (t_p[0] + radius + shift,t_p[1])
+            if percent<=0.5: angle = -45
+            else: angle = 45
+        if wall == 'top':
+            t_p = percent_line(self.tl_inp,self.tr_inp,percent)
+            center = (t_p[0],t_p[1] + radius + shift)
+            if percent>=0.5: angle = 45
+            else: angle = 135
+        if wall == 'bottom':
+            t_p = percent_line(self.bl_inp,self.br_inp,percent)
+            center = (t_p[0],t_p[1] - radius - shift)
+            if percent<=0.5: angle = -135
+            else: angle = -45
+
+
+        if inter == "s1":
+            int = Interruptor_s1(self.canvas,center,radius,label = label1)
+            int.set_labe(shift=10,angle=angle)
+        
+        if inter == "s2":
+            int = Interruptor_s2(self.canvas,center,radius,label1 = label1, label2 = label2)
+            int.set_labe(shift=10,angle=angle)
+        
+        if inter == "s3":
+            int = Interruptor_s3(self.canvas,center,radius,label1 = label1, label2 = label2, label3 = label3)
+            int.set_labe(shift=10)
+        
+        if inter == "3way":
+            int = Interruptor_3way(self.canvas,center,radius,label = label1)
+            int.set_labe(shift=10,angle=angle)
+        
+        if inter == "3way":
+            int = Interruptor_3way(self.canvas,center,radius,label = label1)
+            int.set_labe(shift=10,angle=angle)
+            
+        return int
+            
+
     def rect_area(sef,p1,p2):
         return (((p2[0] - p1[0]) * (p1[1] - p2[1]))**2)**(1/2)
 

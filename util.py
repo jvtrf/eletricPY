@@ -245,3 +245,9 @@ def get_widget_box(canvas,widget):
     height  = bounds[3] - bounds[1]
 
     return height,width
+
+def shift_points(points,x = 0 ,y = 0):
+    aux = []
+    for p in points:
+        aux.append((p[0]+x,p[1]+y))
+    return aux

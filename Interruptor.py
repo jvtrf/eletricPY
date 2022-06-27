@@ -12,10 +12,11 @@ class Interruptor_s1:
         self.raio = raio
         self.label = label
         self.canvas = canvas
+        self.obj = "s1" 
 
         create_circle(self.canvas,self.center,self.raio,color='')
         
-        self.bottom = center[0], center[1] + raio
+        self.botton = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
         self.right = center[0] + raio, center[1]
         self.left = center[0] - raio, center[1]
@@ -42,10 +43,11 @@ class Interruptor_s2:
         self.label1 = label1
         self.label2 = label2
         self.canvas = canvas
+        self.obj = "s2" 
 
         create_circle(self.canvas,self.center,self.raio,color='')
         
-        self.bottom = center[0], center[1] + raio
+        self.botton = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
         self.right = center[0] + raio, center[1]
         self.left = center[0] - raio, center[1]
@@ -79,10 +81,11 @@ class Interruptor_s3:
         self.label2 = label2
         self.label3 = label3
         self.canvas = canvas
+        self.obj = "s3" 
 
         create_circle(self.canvas,self.center,self.raio,color='')
         
-        self.bottom = center[0], center[1] + raio
+        self.botton = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
         self.right = center[0] + raio, center[1]
         self.left = center[0] - raio, center[1]
@@ -124,6 +127,7 @@ class Interruptor_3way:
         self.raio = raio
         self.label = label
         self.canvas = canvas
+        self.obj = "3way" 
 
         create_circle(self.canvas,self.center,self.raio,color='black')
         
@@ -153,6 +157,7 @@ class Interruptor_4way:
         self.raio = raio
         self.label = label
         self.canvas = canvas
+        self.obj = "4way" 
 
         create_circle(self.canvas,self.center,self.raio,color='')
         

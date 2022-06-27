@@ -9,7 +9,7 @@ class Condutor:
     #   menos curvado vai ficar o condutor.
     #  -Recebe um valor "dir" que decide se a curva é pra dentro ou pra fora.
 
-    def __init__(self,canvas,A,B,d,dir) -> None:
+    def __init__(self,canvas,A,B,d = 100,dir = 0) -> None:
         self.points ,self.head, self.angles = draw_curve(A,B,d,dir)
         self.raio = get_vec_module(get_vec_A_B(self.head,self.points[0]))
         self.quad = get_quadrant(get_vec_A_B(A,B))
