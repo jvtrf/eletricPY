@@ -1,6 +1,8 @@
 from util import get_mid_p
 class Fonte:
     def __init__(self,canvas,w =30,h = 10,center = (100,100)) -> None:
+
+        self.id_list = []
         
         self.canvas         = canvas
         self.top_left       = self.tl = center[0] - w/2,center[1] + h/2
@@ -13,8 +15,10 @@ class Fonte:
         self.middle_right   = self.mr = get_mid_p(self.tr,self.br)
         self.middle_left    = self.ml = get_mid_p(self.tl,self.bl)
 
-        canvas.create_rectangle(self.tl,self.br,fill = 'white',width = 2)
-        
-        canvas.create_polygon(self.tl,self.br,self.bl)
-
+        self.id_list.append(canvas.create_rectangle(self.tl,self.br,fill = 'white',width = 2))
+        self.id_list.append(canvas.create_polygon(self.tl,self.br,self.bl))
         pass
+
+    def deletar(self):
+        for id in self.id_list:
+            self.canvas.delete(id)
