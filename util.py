@@ -35,13 +35,13 @@ def percent_line(A,B,p):
         point = B[0] - p*d*angle_cos(ang), B[1] - p*d*angle_sin(ang)
     return point
 
-def create_circle(canvas,c,r,color = 'red'):
+def create_circle(canvas,c,r,color = 'red',tag = ''):
     # Cria uma cricunferencia vermelha, com centro "c" e rairo "r".
     # Utilizado pra debugar.
 
     p1 = c[0]-r,c[1]-r
     p2 = c[0]+r,c[1]+r
-    canvas.create_oval(p1,p2,fill=color)
+    return canvas.create_oval(p1,p2,fill=color,tags = tag)
 
 def get_mid_p(A,B):
     # Obtem o midpoint da reta.
@@ -251,3 +251,29 @@ def shift_points(points,x = 0 ,y = 0):
     for p in points:
         aux.append((p[0]+x,p[1]+y))
     return aux
+
+def sum_points(A,B):
+    return (A[0]+B[0],A[1]+B[1])
+
+def dif_points(A,B):
+    return (A[0]-B[0],A[1]-B[1])
+
+def get_line_paramaters(line = []):
+    (x1,y1),(x2,y2) = line
+    
+    a = (y1-y2)/(x1-x2)
+    b = y1 - a*x1
+
+    return {'a': a , 'b':b}
+
+def intersec_lines(line1=[],line2=[]):
+    a1 = get_line_paramaters(line1)['a']
+    b1 = get_line_paramaters(line1)['b']
+    a2 = get_line_paramaters(line2)['a']
+    b2 = get_line_paramaters(line2)['b']
+
+    x = (b2-b1)/(a1-a2)
+    y = a1*x + b1
+
+    return (x,y)
+    
