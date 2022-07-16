@@ -23,7 +23,6 @@ canvas.pack()
 quarto = sqr_com(e=0.15*scale,horizotal_dim = 3*scale, vertical_dim = 3*scale,
                     s_x = 250, s_y = 30, canvas=canvas,scale=scale)
 
-
 #
 #                                            BANHEIRO
 #
@@ -55,17 +54,19 @@ cozinha.create_left_space(0,3*scale)
 #                                          PORTA DO BANHEIRO
 #
 banheiro.create_botton_indoor(ld=(3-0.85)*scale,w=0.8*scale)
-'''
+
 ###############################################################################################################
 #------------------------------------------- LÂMPADAS ---------------------------------------------------------
 ###############################################################################################################
 #
 #                                             QUARTO
 #
-lampada_quarto = Lampada(canvas=canvas,centro = quarto.center,raio=20,pot = "100",id = "a",circ = "1")
+#lampada_quarto = Lampada(canvas=canvas,centro = quarto.center,raio=20,pot = "100",id = "a",circ = "1")
+quarto.add_lamp(raio=20,pot='100',id = 'a',circ='1')
 #
 #                                            BANHEIRO
 #
+'''
 lampada_banheiro = Lampada(canvas=canvas,centro = banheiro.center,raio=20,pot = "100",id = "b",circ = "1")
 #
 #                                              SALA
@@ -146,7 +147,8 @@ cond_quarto_2.set_arm()
 cond_quarto_3 = Condutor(canvas=canvas,A=lampada_quarto.right,B = interruptor_1_quarto.botton,curve = 50,orientation=1)
 cond_quarto_3.set_arm(base_angle=-135)
 #
+#
 '''
-
+quarto.delete()
 root.mainloop()
 

@@ -1,10 +1,8 @@
 import math
-from operator import index
 from random import random
-
-from requests import delete
 from util import percent_line,shift_points
 from Interruptor import Interruptor_s1,Interruptor_s2,Interruptor_s3,Interruptor_3way,Interruptor_4way
+from Lampada import Lampada
 
 class Square_comodo_in_dim:
     def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None,scale = 0) -> None:
@@ -479,6 +477,12 @@ class Square_comodo_in_dim:
             int.set_labe(shift=10,angle=angle)
             
         return int
+    
+    def add_lamp(self,centro = None,raio=20,pot = "100",id = "a",circ = "1"):
+        if centro == None: centro = self.center
+        lamp = Lampada(self.canvas,centro=centro,raio=raio,pot=pot,id=id,circ=circ)
+        self.delete_list = self.delete_list+lamp.id_list
+
             
 
     def rect_area(sef,p1,p2):
