@@ -392,21 +392,25 @@ class Square_comodo_in_dim:
     def add_right_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p = percent_line(self.tr_inp,self.br_inp,percent)
         tomada = tug(canvas=self.canvas,angle=-90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount)
+        self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
     def add_left_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p =  percent_line(self.tl_inp,self.bl_inp,percent)
         tomada = tug(canvas=self.canvas,angle=90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount)
+        self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
     def add_top_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p = percent_line(self.tl_inp,self.tr_inp,percent)
         tomada = tug(canvas=self.canvas,angle=180,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount)
+        self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
     def add_botton_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p = percent_line(self.bl_inp,self.br_inp,percent)
         tomada = tug(canvas=self.canvas,angle=0,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount)
+        self.delete_list = self.delete_list+tomada.id_list
         return tomada
     
     def add_right_fonte(self,fonte,dim = 30,percent = 0.5):
@@ -475,6 +479,8 @@ class Square_comodo_in_dim:
         if inter == "3way":
             int = Interruptor_3way(self.canvas,center,radius,label = label1)
             int.set_labe(shift=10,angle=angle)
+
+        self.delete_list = self.delete_list+int.id_list
             
         return int
     

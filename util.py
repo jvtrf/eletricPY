@@ -1,7 +1,6 @@
 from math import sin, radians,cos,atan2,degrees,acos
 from tkinter import font
-from numpy import angle, linspace
-from pandas import pivot
+from numpy import linspace
 
 def angle_sin(ang):
     #Calcula o seno de um angulo

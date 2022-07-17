@@ -3,7 +3,9 @@ from EletricPyCanvas import ProjectCanvas
 from Grid import Grid
 from UiComodoInsert import UiComodoInsert
 from util import intersec_lines,create_circle
+from erase import erase
 import world
+
 
 
 master = tk.Tk()
@@ -20,5 +22,15 @@ pc.pack()
 draw_canvas = pc.draw_canvas
 
 world.grid = Grid(pc,t_w = 2000, t_h = 2000 , shift= 70)
+
+e = erase(draw_canvas)
+
+def canvas_loop(event):
+    global e
+    e.update_pos(event.x+10,event.y-5)
+
+    pass
+
+draw_canvas.bind('<Motion>',canvas_loop)
 
 master.mainloop()

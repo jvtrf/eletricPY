@@ -61,22 +61,19 @@ banheiro.create_botton_indoor(ld=(3-0.85)*scale,w=0.8*scale)
 #
 #                                             QUARTO
 #
-#lampada_quarto = Lampada(canvas=canvas,centro = quarto.center,raio=20,pot = "100",id = "a",circ = "1")
 quarto.add_lamp(raio=20,pot='100',id = 'a',circ='1')
 #
 #                                            BANHEIRO
 #
-'''
-lampada_banheiro = Lampada(canvas=canvas,centro = banheiro.center,raio=20,pot = "100",id = "b",circ = "1")
+banheiro.add_lamp(raio=20,pot = "100",id = "b",circ = "1")
 #
 #                                              SALA
 #
-lampada_sala = Lampada(canvas=canvas,centro = sala.center,raio=20,pot = "100",id = "c",circ = "1")
+sala.add_lamp(raio=20,pot = "100",id = "c",circ = "1")
 #
 #                                             COZINHA
 #
-lampada_cozinha = Lampada(canvas=canvas,centro = cozinha.center,raio=20,pot = "100",id = "d",circ = "1")
-
+cozinha.add_lamp(raio=20,pot = "100",id = "d",circ = "1")
 ###############################################################################################################
 #-------------------------------------------- TOMADAS --------------------------------------------------------
 ###############################################################################################################
@@ -138,6 +135,7 @@ fonte = quarto.add_botton_fonte(Fonte,dim = 0.60*scale,percent = 0.6)
 #
 #
 #
+'''
 cond_quarto_1 = Condutor(canvas=canvas,A = fonte.mt,B = lampada_quarto.botton,curve=0)
 cond_quarto_1.set_arm()
 
@@ -149,6 +147,7 @@ cond_quarto_3.set_arm(base_angle=-135)
 #
 #
 '''
-quarto.delete()
+#quarto.delete()
+#banheiro.delete()
 root.mainloop()
 

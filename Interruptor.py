@@ -14,7 +14,10 @@ class Interruptor_s1:
         self.canvas = canvas
         self.obj = "s1" 
 
-        create_circle(self.canvas,self.center,self.raio,color='')
+        self.id_list = []
+
+        id = create_circle(self.canvas,self.center,self.raio,color='')
+        self.id_list.append(id)
         
         self.botton = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
@@ -28,7 +31,8 @@ class Interruptor_s1:
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
 
         pos = get_radius_point(self.center,self.raio+shift,angle)
-        draw_text(self.canvas,pos,self.label,self.raio)
+        id = draw_text(self.canvas,pos,self.label,self.raio)
+        self.id_list.append(id)
     
 class Interruptor_s2:
     def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b') -> None:
@@ -43,16 +47,19 @@ class Interruptor_s2:
         self.label1 = label1
         self.label2 = label2
         self.canvas = canvas
-        self.obj = "s2" 
+        self.obj = "s2"
+        self.id_list = []
 
-        create_circle(self.canvas,self.center,self.raio,color='')
+        id = create_circle(self.canvas,self.center,self.raio,color='')
+        self.id_list.append(id)
         
         self.botton = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
         self.right = center[0] + raio, center[1]
         self.left = center[0] - raio, center[1]
 
-        self.canvas.create_line(self.bottom,self.celling)
+        id = self.canvas.create_line(self.bottom,self.celling)
+        self.id_list.append(id)
 
         pass
 
@@ -62,10 +69,12 @@ class Interruptor_s2:
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
 
         pos = get_radius_point(self.center,self.raio+shift,angle)
-        draw_text(self.canvas,pos,self.label1,self.raio)
+        draw = draw_text(self.canvas,pos,self.label1,self.raio)
+        self.id_list.append(draw)
 
         pos = get_radius_point(self.center,self.raio+shift,angle+90)
-        draw_text(self.canvas,pos,self.label2,self.raio)
+        id = draw_text(self.canvas,pos,self.label2,self.raio)
+        self.id_list.append(id)
 
 class Interruptor_s3:
     def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b',label3 ='c') -> None:
@@ -81,24 +90,29 @@ class Interruptor_s3:
         self.label2 = label2
         self.label3 = label3
         self.canvas = canvas
-        self.obj = "s3" 
+        self.obj = "s3"
+        self.id_list = []
 
-        create_circle(self.canvas,self.center,self.raio,color='')
+        id = create_circle(self.canvas,self.center,self.raio,color='')
+        self.id_list.append(id)
         
         self.botton = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
         self.right = center[0] + raio, center[1]
         self.left = center[0] - raio, center[1]
 
-        self.canvas.create_line(self.celling,self.center)
+        id = self.canvas.create_line(self.celling,self.center)
+        self.id_list.append(id)
+        
 
         pos = get_radius_point(self.center,self.raio,45)
-        self.canvas.create_line(self.center,pos)
+        id = self.canvas.create_line(self.center,pos)
+        self.id_list.append(id)
 
         pos = get_radius_point(self.center,self.raio,45+90)
-        self.canvas.create_line(self.center,pos)
-
-
+        id = self.canvas.create_line(self.center,pos)
+        self.id_list.append(id)
+        
         pass
 
     def set_labe(self,shift = 4):
@@ -107,13 +121,16 @@ class Interruptor_s3:
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
 
         pos = get_radius_point(self.center,self.raio+shift,90)
-        draw_text(self.canvas,pos,self.label1,self.raio)
+        id = draw_text(self.canvas,pos,self.label1,self.raio)
+        self.id_list.append(id)
 
         pos = get_radius_point(self.center,self.raio+shift,-135)
-        draw_text(self.canvas,pos,self.label2,self.raio)
+        id = draw_text(self.canvas,pos,self.label2,self.raio)
+        self.id_list.append(id)
 
         pos = get_radius_point(self.center,self.raio+shift,-45)
-        draw_text(self.canvas,pos,self.label3,self.raio)
+        id = draw_text(self.canvas,pos,self.label3,self.raio)
+        self.id_list.append(id)
 
 class Interruptor_3way:
     def __init__(self,canvas,center,raio = 5,label = 'a') -> None:
@@ -128,8 +145,10 @@ class Interruptor_3way:
         self.label = label
         self.canvas = canvas
         self.obj = "3way" 
+        self.id_list = []
 
-        create_circle(self.canvas,self.center,self.raio,color='black')
+        id = create_circle(self.canvas,self.center,self.raio,color='black')
+        self.id_list.append(id)
         
         self.bottom = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
@@ -159,7 +178,8 @@ class Interruptor_4way:
         self.canvas = canvas
         self.obj = "4way" 
 
-        create_circle(self.canvas,self.center,self.raio,color='')
+        id = create_circle(self.canvas,self.center,self.raio,color='')
+        self.id_list.append(id)
         
         self.bottom = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
@@ -168,7 +188,8 @@ class Interruptor_4way:
 
         points,head,angles = draw_curve(self.bottom,self.celling,0,dir=1)
 
-        self.canvas.create_polygon(points)
+        id = self.canvas.create_polygon(points)
+        self.id_list.append(id)
 
         pass
 
@@ -178,4 +199,5 @@ class Interruptor_4way:
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
 
         pos = get_radius_point(self.center,self.raio+shift,angle)
-        draw_text(self.canvas,pos,self.label,self.raio)
+        id = draw_text(self.canvas,pos,self.label,self.raio)
+        self.id_list.append(id)
