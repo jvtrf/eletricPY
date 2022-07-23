@@ -5,6 +5,7 @@ from UiComodoInsert import UiComodoInsert
 from util import intersec_lines,create_circle
 from erase import erase
 from Options_bar import option_bar
+from Lampada import Lampada
 import world
 
 
@@ -29,6 +30,12 @@ pc.pack()
 draw_canvas = pc.draw_canvas
 
 world.grid = Grid(pc,t_w = 2000, t_h = 2000 , shift= 70)
+
+#Test Area
+
+lmp = Lampada(draw_canvas,(200,200),100,'100','a','1',pc)
+
+#
 
 
 def canvas_loop(event):

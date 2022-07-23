@@ -2,7 +2,7 @@ from turtle import width
 
 
 class Lampada:
-    def __init__(self,canvas,centro,raio,pot,id,circ) -> None:
+    def __init__(self,canvas,centro,raio,pot,id,circ,pc = None) -> None:
         self.canvas = canvas
         self.centro = centro
         self.raio = raio
@@ -10,10 +10,9 @@ class Lampada:
         self.circ = circ
         self.id = id
         self.id_list = []
+        self.pc = pc
         self.create()
 
-        
-        pass
     
     def create(self):
         p1x = self.centro[0] - self.raio
@@ -21,7 +20,7 @@ class Lampada:
         p2x = p1x + 2*self.raio
         p2y = p1y + 2*self.raio
 
-        id = self.canvas.create_oval(p1x,p1y,p2x,p2y,width=2)
+        id = self.canvas.create_oval(p1x,p1y,p2x,p2y,width=2,fill = 'white')
         self.id_list.append(id)
 
         self.left = (p1x,p1y+self.raio)                   #Pontos Tangentes Da circunferência
@@ -49,3 +48,9 @@ class Lampada:
         id = self.canvas.create_text(potpos,fill="black",font="Arial "+str(int(self.raio/2)),
                         text=str(self.pot))
         self.id_list.append(id)
+
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]

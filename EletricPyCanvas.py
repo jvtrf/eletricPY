@@ -56,17 +56,7 @@ class ProjectCanvas:
         self.frame.pack_forget()
     
     def set_state(self,bt_state):
-        
         self.verfiy_state(bt_state,v_state='erease')
-        '''
-        if state == 'erease' and self.state != state:
-            self.e = erase(self.draw_canvas)
-            self.state = state
-        elif state == 'erease' and self.state == 'erease':
-            self.draw_canvas.delete(self.e.label)
-            self.state = 'normal'
-            pass
-        '''
     
     def verfiy_state(self,bt_state,v_state):
         if bt_state == v_state and self.state != bt_state:
