@@ -3,7 +3,7 @@ class erase:
     def __init__(self,canvas) -> None:
         
         self.canvas = canvas
-        self.label = self.canvas.create_text(0,0,text='X',fill = 'red',font='10')
+        self.label = self.canvas.create_text(0,0,text='💣',fill = 'red',font='10')
         pass
 
     def update_pos(self,x,y):

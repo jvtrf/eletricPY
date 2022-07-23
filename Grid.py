@@ -10,6 +10,7 @@ class Grid:
         self.color = color
         self.canvas = project_canvas.draw_canvas
         self.pc = project_canvas
+        self.radius = 2
         
         self.horizontal_up       = [(x,0) for x in range(0,t_w,shift)]
         self.horizontal_botton   = [(x,t_h) for x in range(0,t_w,shift)]
@@ -33,7 +34,7 @@ class Grid:
         for y in self.vertical_left:
             for x in self.horizontal_botton:
                 self.points.append((x[0],y[1]))
-                self.canvas_circles.append(create_circle(self.canvas,c=(x[0],y[1]),r = 5,color='grey',tag=(x[0],y[1],'aux_point')))
+                self.canvas_circles.append(create_circle(self.canvas,c=(x[0],y[1]),r = self.radius,color='grey',tag=(x[0],y[1],'aux_point')))
         pass
     
     def click_right_circles(self,event):
