@@ -1,12 +1,13 @@
 from util import rotate_points,draw_text,get_radius_point,distance,get_widget_box,shift_points
 
 class Tomada_baixa:
-    def __init__(self,canvas,angle = 0,tail_pos = (100,100),tail_size = 10,label = '',font_size = 10,amount = 1) -> None:
+    def __init__(self,canvas,angle = 0,tail_pos = (100,100),tail_size = 10,label = '',font_size = 10,amount = 1, pc = None) -> None:
 
         self.canvas = canvas
         self.tail = tail_pos
         self.label = label
         self.angle = angle
+        self.pc = pc
         self.id_list = []
         
         points = [tail_pos] #0
@@ -69,15 +70,23 @@ class Tomada_baixa:
         text = draw_text(self.canvas,pos,self.label,font_size)
         self.id_list.append(text)
 
+        self.id_list.append(id)
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
+
         pass
 
 class Tomada_media:
-    def __init__(self,canvas,angle = 0,tail_pos = (100,100),tail_size = 10,label = '',font_size = 10,amount = 1) -> None:
+    def __init__(self,canvas,angle = 0,tail_pos = (100,100),tail_size = 10,label = '',font_size = 10,amount = 1, pc = None) -> None:
 
         self.canvas = canvas
         self.tail = tail_pos
         self.label = label
         self.angle = angle
+        self.pc = pc
         self.id_list = []
         
         points = [tail_pos] #0
@@ -167,16 +176,23 @@ class Tomada_media:
         text = draw_text(self.canvas,pos,self.label,font_size)
         self.id_list.append(text)
 
+        self.id_list.append(id)
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
         pass
 
 class Tomada_alta:
-    def __init__(self,canvas,angle = 0,tail_pos = (100,100),tail_size = 10,label = '',font_size = 10,amount = 1) -> None:
+    def __init__(self,canvas,angle = 0,tail_pos = (100,100),tail_size = 10,label = '',font_size = 10,amount = 1, pc = None) -> None:
 
         self.canvas = canvas
         self.tail = tail_pos
         self.label = label
         self.angle = angle
+        self.pc = pc
         self.id_list = []
         
         points = [tail_pos] #0
@@ -241,5 +257,12 @@ class Tomada_alta:
 
         text = draw_text(self.canvas,pos,self.label,font_size)
         self.id_list.append(text)
+
+        self.id_list.append(id)
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
         pass

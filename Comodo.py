@@ -5,10 +5,11 @@ from Interruptor import Interruptor_s1,Interruptor_s2,Interruptor_s3,Interruptor
 from Lampada import Lampada
 
 class Square_comodo_in_dim:
-    def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None,scale = 0) -> None:
+    def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None,scale = 0,pc = None) -> None:
 
         self.delete_list = []
         self.comodo_id = str(random())
+        self.pc = pc
 
         if e != None:
             eL = e ; eR = e ; eT = e ; eB = e
@@ -17,9 +18,9 @@ class Square_comodo_in_dim:
         f = (s[0]+horizotal_dim,s[1]+vertical_dim)
         points = (s[0]-eL,s[1]-eT,f[0]+eR,f[1]+ eB)
 
-        color = 'grey'
-        canvas.create_rectangle(points,fill=color,outline = '',tag = self.generate_random())
-        canvas.create_rectangle(s[0],s[1],f[0],f[1],fill='white',outline = 'black',tag = self.generate_random())
+        color = 'black'
+        self.border = canvas.create_rectangle(points,fill=color,outline = '',tag = self.generate_random())
+        self.big_rect = canvas.create_rectangle(s[0],s[1],f[0],f[1],fill='white',outline = 'black',tag = self.generate_random())
 
         self.bottom_dim = horizotal_dim
         self.top_dim = horizotal_dim
@@ -71,6 +72,9 @@ class Square_comodo_in_dim:
         self.door_w = 5         #Config
 
         self.canvas = canvas
+
+        self.canvas.tag_bind(self.big_rect,"<Button-1>",self.clicked)
+        self.canvas.tag_bind(self.border,"<Button-1>",self.clicked)
         pass
     
     def create_left_window(self,dim):
@@ -462,23 +466,23 @@ class Square_comodo_in_dim:
 
         if inter == "s1":
             int = Interruptor_s1(self.canvas,center,radius,label = label1)
-            int.set_labe(shift=10,angle=angle)
+            int.set_label(shift=10,angle=angle)
         
         if inter == "s2":
             int = Interruptor_s2(self.canvas,center,radius,label1 = label1, label2 = label2)
-            int.set_labe(shift=10,angle=angle)
+            int.set_label(shift=10,angle=angle)
         
         if inter == "s3":
             int = Interruptor_s3(self.canvas,center,radius,label1 = label1, label2 = label2, label3 = label3)
-            int.set_labe(shift=10)
+            int.set_label(shift=10)
         
         if inter == "3way":
             int = Interruptor_3way(self.canvas,center,radius,label = label1)
-            int.set_labe(shift=10,angle=angle)
+            int.set_label(shift=10,angle=angle)
         
         if inter == "3way":
             int = Interruptor_3way(self.canvas,center,radius,label = label1)
-            int.set_labe(shift=10,angle=angle)
+            int.set_label(shift=10,angle=angle)
 
         self.delete_list = self.delete_list+int.id_list
             
@@ -488,6 +492,8 @@ class Square_comodo_in_dim:
         if centro == None: centro = self.center
         lamp = Lampada(self.canvas,centro=centro,raio=raio,pot=pot,id=id,circ=circ)
         self.delete_list = self.delete_list+lamp.id_list
+
+        return lamp
 
             
 
@@ -504,7 +510,9 @@ class Square_comodo_in_dim:
         for el in self.delete_list:
             self.canvas.delete(el)
         pass
-
+    
+    def clicked(self,event):
+        if self.pc : self.pc.current_obj = self
 
 
     

@@ -1,5 +1,5 @@
 import tkinter as tk
-from erase import erase
+from Tools import tool
 
 class ProjectCanvas:
     def __init__(self,master,user_w,user_h,project_w,project_h):
@@ -32,7 +32,8 @@ class ProjectCanvas:
         self.insert_ui = None
         self.insert_ui_id = None
         self.state = 'normal'
-        self.e = None
+        self.tool_mouse = None
+        self.current_obj = None
 
         self.bind_all()
         pass
@@ -60,9 +61,9 @@ class ProjectCanvas:
     
     def verfiy_state(self,bt_state,v_state):
         if bt_state == v_state and self.state != bt_state:
-            self.e = erase(self.draw_canvas)
+            self.tool_mouse = tool(self.draw_canvas,v_state)
             self.state = bt_state
         elif bt_state == v_state and self.state == v_state:
-            self.draw_canvas.delete(self.e.label)
+            self.draw_canvas.delete(self.tool_mouse.label)
             self.state = 'normal'
             pass

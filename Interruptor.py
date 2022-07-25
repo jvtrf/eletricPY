@@ -1,7 +1,7 @@
 from util import create_circle,draw_text,get_radius_point,draw_curve
 
 class Interruptor_s1:
-    def __init__(self,canvas,center,raio = 5,label = 'a') -> None:
+    def __init__(self,canvas,center,raio = 5,label = 'a',pc = None) -> None:
         # Desenha um interruptor simples no canvas
         # Recebe um canvas.
         # Recebe o centro do interruptor: "center".
@@ -13,6 +13,7 @@ class Interruptor_s1:
         self.label = label
         self.canvas = canvas
         self.obj = "s1" 
+        self.pc = pc
 
         self.id_list = []
 
@@ -25,7 +26,7 @@ class Interruptor_s1:
         self.left = center[0] - raio, center[1]
         pass
 
-    def set_labe(self,angle = 45,shift = 4):
+    def set_label(self,angle = 45,shift = 4):
         # Coloca label em algum lugar próximo ao interruptor.
         # Recebe um angulo que decide onde fica a label: "angle".
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
@@ -33,9 +34,15 @@ class Interruptor_s1:
         pos = get_radius_point(self.center,self.raio+shift,angle)
         id = draw_text(self.canvas,pos,self.label,self.raio)
         self.id_list.append(id)
+
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
 class Interruptor_s2:
-    def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b') -> None:
+    def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b',pc = None) -> None:
         # Desenha um interruptor simples no canvas
         # Recebe um canvas.
         # Recebe o centro do interruptor: "center".
@@ -48,6 +55,7 @@ class Interruptor_s2:
         self.label2 = label2
         self.canvas = canvas
         self.obj = "s2"
+        self.pc = pc
         self.id_list = []
 
         id = create_circle(self.canvas,self.center,self.raio,color='')
@@ -63,7 +71,7 @@ class Interruptor_s2:
 
         pass
 
-    def set_labe(self,angle = 45,shift = 4):
+    def set_label(self,angle = 45,shift = 4):
         # Coloca label em algum lugar próximo ao interruptor.
         # Recebe um angulo que decide onde fica a label: "angle".
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
@@ -74,10 +82,17 @@ class Interruptor_s2:
 
         pos = get_radius_point(self.center,self.raio+shift,angle+90)
         id = draw_text(self.canvas,pos,self.label2,self.raio)
+        
         self.id_list.append(id)
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
+    
 
 class Interruptor_s3:
-    def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b',label3 ='c') -> None:
+    def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b',label3 ='c',pc = None) -> None:
         # Desenha um interruptor simples no canvas
         # Recebe um canvas.
         # Recebe o centro do interruptor: "center".
@@ -91,6 +106,7 @@ class Interruptor_s3:
         self.label3 = label3
         self.canvas = canvas
         self.obj = "s3"
+        self.pc = pc
         self.id_list = []
 
         id = create_circle(self.canvas,self.center,self.raio,color='')
@@ -115,7 +131,7 @@ class Interruptor_s3:
         
         pass
 
-    def set_labe(self,shift = 4):
+    def set_label(self,shift = 4):
         # Coloca label em algum lugar próximo ao interruptor.
         # Recebe um angulo que decide onde fica a label: "angle".
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
@@ -132,8 +148,17 @@ class Interruptor_s3:
         id = draw_text(self.canvas,pos,self.label3,self.raio)
         self.id_list.append(id)
 
+        self.id_list.append(id)
+        
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
+    
+
 class Interruptor_3way:
-    def __init__(self,canvas,center,raio = 5,label = 'a') -> None:
+    def __init__(self,canvas,center,raio = 5,label = 'a',pc = None) -> None:
         # Desenha um interruptor simples no canvas
         # Recebe um canvas.
         # Recebe o centro do interruptor: "center".
@@ -144,7 +169,8 @@ class Interruptor_3way:
         self.raio = raio
         self.label = label
         self.canvas = canvas
-        self.obj = "3way" 
+        self.obj = "3way"
+        self.pc = None
         self.id_list = []
 
         id = create_circle(self.canvas,self.center,self.raio,color='black')
@@ -156,7 +182,7 @@ class Interruptor_3way:
         self.left = center[0] - raio, center[1]
         pass
 
-    def set_labe(self,angle = 45,shift = 4):
+    def set_label(self,angle = 45,shift = 4):
         # Coloca label em algum lugar próximo ao interruptor.
         # Recebe um angulo que decide onde fica a label: "angle".
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
@@ -164,8 +190,16 @@ class Interruptor_3way:
         pos = get_radius_point(self.center,self.raio+shift,angle)
         draw_text(self.canvas,pos,self.label,self.raio)
 
+        self.id_list.append(id)
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
+    
+
 class Interruptor_4way:
-    def __init__(self,canvas,center,raio = 5,label = 'a') -> None:
+    def __init__(self,canvas,center,raio = 5,label = 'a',pc = None) -> None:
         # Desenha um interruptor simples no canvas
         # Recebe um canvas.
         # Recebe o centro do interruptor: "center".
@@ -193,7 +227,7 @@ class Interruptor_4way:
 
         pass
 
-    def set_labe(self,angle = 45,shift = 4):
+    def set_label(self,angle = 45,shift = 4):
         # Coloca label em algum lugar próximo ao interruptor.
         # Recebe um angulo que decide onde fica a label: "angle".
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
@@ -201,3 +235,11 @@ class Interruptor_4way:
         pos = get_radius_point(self.center,self.raio+shift,angle)
         id = draw_text(self.canvas,pos,self.label,self.raio)
         self.id_list.append(id)
+
+        self.id_list.append(id)
+        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event):
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
+    

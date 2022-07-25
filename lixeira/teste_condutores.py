@@ -1,5 +1,5 @@
 import tkinter as tk
-from Condutor import Condutor
+from lixeira.Condutor import Condutor
 
 root = tk.Tk()
 
