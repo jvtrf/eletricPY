@@ -8,23 +8,26 @@ class option_bar:
         self.pc = project_canvas
         self.op_frame = tk.Frame(root)#, highlightbackground="black", highlightthickness=2)
 
-        self.save_photo = ImageTk.PhotoImage(Image.open("images/Saving_icon.png").resize((40,40)))
-        self.erease_photo = ImageTk.PhotoImage(Image.open("images/Erease_icon.png").resize((40,40)))
-        self.load_photo = ImageTk.PhotoImage(Image.open("images/Load_icon.png").resize((40,40)))
-        self.condu_photo = ImageTk.PhotoImage(Image.open("images/Conexao_icon.png").resize((40,40)))
+        self.save_photo = ImageTk.PhotoImage(Image.open("images/saving_icon.png").resize((40,40)))
+        self.erease_photo = ImageTk.PhotoImage(Image.open("images/erease_icon.png").resize((40,40)))
+        self.load_photo = ImageTk.PhotoImage(Image.open("images/load_icon.png").resize((40,40)))
+        self.condu_photo = ImageTk.PhotoImage(Image.open("images/condu_icon.png").resize((40,40)))
         self.room_photo = ImageTk.PhotoImage(Image.open("images/room_icon.png").resize((40,40)))
+        self.lamp_photo = ImageTk.PhotoImage(Image.open("images/lamp_icon.png").resize((40,40)))
 
         self.save = ttk.Button(self.op_frame,text='Save',image = self.save_photo,command = lambda: self.pc.set_state('save'))
         self.erease = ttk.Button(self.op_frame,text='Erease',image = self.erease_photo, command = lambda: self.pc.set_state('erease'))
         self.load = ttk.Button(self.op_frame,text='Load',image = self.load_photo,command = lambda: self.pc.set_state('load'))
         self.condu = ttk.Button(self.op_frame,text='Condu',image = self.condu_photo, command = lambda: self.pc.set_state('condu'))
         self.room = ttk.Button(self.op_frame,text='Room',image = self.room_photo, command = lambda: self.pc.set_state('room'))
+        self.lamp = ttk.Button(self.op_frame,text='Lamp',image = self.lamp_photo, command = lambda: self.pc.set_state('lamp'))
 
         self.saveL = ttk.Label(self.op_frame,text="SAVE")
         self.loadL = ttk.Label(self.op_frame,text="LOAD")
         self.ereaseL = ttk.Label(self.op_frame,text="EREASE")
         self.conduL = ttk.Label(self.op_frame,text="CONECTION")
         self.roomL = ttk.Label(self.op_frame,text="ADD ROOM")
+        self.lampL = ttk.Label(self.op_frame,text="ADD LAMP")
 
 
         padx = 12
@@ -44,6 +47,9 @@ class option_bar:
         self.erease.grid(row=0,column=4,padx=padx)
         self.ereaseL.grid(row=1,column=4)
 
+        self.lamp.grid(row=0,column=5,padx=padx)
+        self.lampL.grid(row=1,column=5)
+
         self.op_frame.update()
         
         pass
@@ -55,8 +61,8 @@ class option_bar:
         self.pc.draw_canvas.bind('<Motion>',self.canvas_loop)
     
     def canvas_loop(self,event):
-        if self.pc.state == 'erease': 
-            self.pc.tool_mouse.update_pos(event.x+1,event.y-1)
-            self.pc.unpack()
-            self.pc.pack()
-        pass
+        for st in self.pc.mouse_follow:
+            if self.pc.state == st: 
+                self.pc.tool_mouse.update_pos(event.x+1,event.y-1)
+                self.pc.unpack()
+                self.pc.pack()

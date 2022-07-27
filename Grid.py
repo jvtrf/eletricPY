@@ -1,6 +1,5 @@
 from util import create_circle
-from UiComodoInsert import UiComodoInsert
-import world
+import UI_backend
 
 class Grid:
     def __init__(self,project_canvas,t_w,t_h,shift,color = 'grey') -> None:
@@ -40,21 +39,12 @@ class Grid:
     def click_right_circles(self,event):
         element = self.canvas.gettags("current")
         pos = float(element[0]),float(element[1])
-        world.x = pos[0]
-        world.y = pos[1]
-
-        if self.pc.insert_ui:
-            self.canvas.coords(self.pc.insert_ui_id,-100,0)
-            self.pc.insert_ui.delete()
-            self.pc.insert_ui == None 
-        self.pc.insert_ui = UiComodoInsert(self.canvas)
-
-        self.pc.insert_ui_id = self.canvas.create_window(pos[0],pos[1],anchor='nw',window = self.pc.insert_ui.frame)
-        self.canvas.update()
+        if self.pc.state == 'room':  self.pc.new_comodo_ui(pos)
+        
     
     def bind_func(self):
         for circles in self.canvas_circles:
-            self.canvas.tag_bind(circles,"<Button-3>",self.click_right_circles)
+            self.canvas.tag_bind(circles,"<Button-1>",self.click_right_circles)
         pass 
     
     def delete_all_circles(self):

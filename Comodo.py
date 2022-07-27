@@ -3,13 +3,15 @@ from random import random
 from util import percent_line,shift_points
 from Interruptor import Interruptor_s1,Interruptor_s2,Interruptor_s3,Interruptor_3way,Interruptor_4way
 from Lampada import Lampada
+import UI_insert
 
 class Square_comodo_in_dim:
-    def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None,scale = 0,pc = None) -> None:
+    def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None,scale = 0,pc = None,tipo = None) -> None:
 
         self.delete_list = []
         self.comodo_id = str(random())
         self.pc = pc
+        self.tipo = tipo
 
         if e != None:
             eL = e ; eR = e ; eT = e ; eB = e
@@ -317,9 +319,9 @@ class Square_comodo_in_dim:
             
         return int
     
-    def add_lamp(self,centro = None,raio=20,pot = "100",id = "a",circ = "1"):
+    def add_lamp(self,centro = None,raio=20,pot = "100",id = "a",circ = "1",pc = None):
         if centro == None: centro = self.center
-        lamp = Lampada(self.canvas,centro=centro,raio=raio,pot=pot,id=id,circ=circ)
+        lamp = Lampada(self.canvas,centro=centro,raio=raio,pot=pot,id=id,circ=circ,pc=pc)
         self.delete_list = self.delete_list+lamp.id_list
 
         return lamp
@@ -342,6 +344,9 @@ class Square_comodo_in_dim:
     
     def clicked(self,event):
         if self.pc : self.pc.current_obj = self
+        if self.pc.state == 'lamp':
+            self.pc.set_state('normal')
+            UI_insert.new_lamp(self.pc,self.canvas)
 
 
     

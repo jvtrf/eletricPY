@@ -49,8 +49,8 @@ class Lampada:
                         text=str(self.pot))
         self.id_list.append(id)
 
-        if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
-
+        if self.pc :
+            [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     def explode(self,event):
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]

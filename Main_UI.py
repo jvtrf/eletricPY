@@ -2,11 +2,10 @@ import tkinter as tk
 from turtle import bgcolor
 from EletricPyCanvas import ProjectCanvas
 from Grid import Grid
-from UiComodoInsert import UiComodoInsert
 from util import intersec_lines,create_circle
 from Options_bar import option_bar
 from Lampada import Lampada
-import world
+import UI_backend
 
 
 master = tk.Tk()
@@ -30,7 +29,7 @@ pc.pack()
 
 draw_canvas = pc.draw_canvas
 
-world.grid = Grid(pc,t_w = 2000, t_h = 2000 , shift= 70)
+UI_backend.grid = Grid(pc,t_w = 2000, t_h = 2000 , shift= 70)
 
 
 master.mainloop()

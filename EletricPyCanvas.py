@@ -1,8 +1,12 @@
 import tkinter as tk
 from Tools import tool
+import UI_insert
+
+mouse_follow = ['erease','room','condu','lamp']
 
 class ProjectCanvas:
     def __init__(self,master,user_w,user_h,project_w,project_h):
+
         canvas_frame = tk.Frame(master=master)
         vscrollbar = tk.Scrollbar(canvas_frame)
         hscrollbar = tk.Scrollbar(canvas_frame,orient='horizontal')
@@ -34,6 +38,8 @@ class ProjectCanvas:
         self.state = 'normal'
         self.tool_mouse = None
         self.current_obj = None
+        self.mouse_follow = mouse_follow
+        self.master = master
 
         self.bind_all()
         pass
@@ -57,7 +63,11 @@ class ProjectCanvas:
         self.frame.pack_forget()
     
     def set_state(self,bt_state):
-        self.verfiy_state(bt_state,v_state='erease')
+        for st in self.mouse_follow:
+            self.verfiy_state(bt_state,v_state=st)
+        if bt_state == 'normal':
+            self.draw_canvas.delete(self.tool_mouse.label)
+            self.state = 'normal'
     
     def verfiy_state(self,bt_state,v_state):
         if bt_state == v_state and self.state != bt_state:
@@ -67,3 +77,8 @@ class ProjectCanvas:
             self.draw_canvas.delete(self.tool_mouse.label)
             self.state = 'normal'
             pass
+
+    def new_comodo_ui(self,pos):
+        self.set_state('normal')
+        insert_ui = UI_insert.new_comodo(self,self.master,pos)
+        pass
