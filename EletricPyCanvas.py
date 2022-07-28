@@ -1,8 +1,9 @@
 import tkinter as tk
 from Tools import tool
 import UI_insert
+from util import open_config
 
-mouse_follow = ['erease','room','condu','lamp']
+mouse_follow = open_config('follow_mouse')
 
 class ProjectCanvas:
     def __init__(self,master,user_w,user_h,project_w,project_h):

@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-from turtle import width
+from turtle import update, width
 import UI_backend
+
 
 comodo_options_list = ["quarto","quarto", "banheiro", "cozinha","area de servico"]
 lamp_option_list = ['centro','centro','1/3 ⬆️','1/3 ⬇️']
@@ -35,12 +36,15 @@ class new_comodo:
         opcomodo.pack(anchor=tk.NW,pady=5,expand=True)
         # ENTRYS
         self.esp  = tk.StringVar()
+        self.esp.set('0.1')
         espE = ttk.Entry(frameE,textvariable = self.esp)
         espE.pack(anchor=tk.NW,pady=5)
         self.largura = tk.StringVar()
+        self.largura.set('3')
         larguraE = ttk.Entry(frameE,textvariable = self.largura)
         larguraE.pack(anchor=tk.NW,pady=5)
         self.altura = tk.StringVar()
+        self.altura.set('3')
         alturaE = ttk.Entry(frameE , textvariable= self.altura)
         alturaE.pack(anchor=tk.NW,pady=5)
 
@@ -71,6 +75,7 @@ class new_lamp:
         self.pop_w.title("Adicionar Nova Lampada")
         self.pop_w.geometry("370x250+550+200")
         self.pc = pc
+        self.lamp = None
 
         main_frame = tk.Frame(self.pop_w)
 
@@ -94,9 +99,9 @@ class new_lamp:
         oplamp.config(width=15)
         oplamp.pack(anchor=tk.NW,pady=5,expand=True)
         #ENTRYS
-        self.raio  = tk.StringVar()
-        raioE = ttk.Entry(frameE,textvariable = self.raio)
-        raioE.pack(anchor=tk.NW,pady=5)
+        self.raio  = tk.IntVar()
+        raioS = ttk.Scale(frameE,from_=0,to=100,orient=tk.HORIZONTAL,command=self.lamp_update,variable=self.raio)
+        raioS.pack(anchor=tk.NW,pady=5)
         self.pot  = tk.StringVar()
         potE = ttk.Entry(frameE,textvariable = self.pot)
         potE.pack(anchor=tk.NW,pady=5)
@@ -119,9 +124,16 @@ class new_lamp:
         self.pop_w.destroy()
         self.pop_w.update()
         
+        if self.lamp : self.lamp.die()
+
         UI_backend.create_lamp(canvas=self.pc.draw_canvas,pc = self.pc,
                                 raio=int(self.raio.get()),pot=self.pot.get(),
                                 com=self.com.get(),circ=self.circ.get())
+    def lamp_update(self,var):
+        if self.lamp : self.lamp.die()
+        self.lamp = UI_backend.create_lamp(canvas=self.pc.draw_canvas,pc = self.pc,
+                                    raio=int(self.raio.get()),pot=self.pot.get(),
+                                    com=self.com.get(),circ=self.circ.get())
 
 #master = tk.Tk()
 #tk.Button(master,command=lambda: new_lamp(pc=None,master=master),text= 'teste').pack()

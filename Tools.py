@@ -4,7 +4,7 @@ import EletricPyCanvas
 
 class tool:
     def __init__(self,canvas,state) -> None:
-        for st_p in [(st , 'images/'+st+'_icon.png') for st in EletricPyCanvas.mouse_follow]:
+        for st_p in [(st , 'images/icons/'+st+'_icon.png') for st in EletricPyCanvas.mouse_follow]:
             if state == st_p[0]:
                 self.photo = ImageTk.PhotoImage(Image.open(st_p[1]).resize((40,40)))     
         

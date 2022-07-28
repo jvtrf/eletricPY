@@ -1,0 +1,7 @@
+saving-SAVE
+load-LOAD
+room-ADD ROOM
+erease-EREASE
+lamp-ADD LAMP
+tom-ADD TUG
+condu-CONECTION

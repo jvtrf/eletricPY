@@ -275,4 +275,9 @@ def intersec_lines(line1=[],line2=[]):
     y = a1*x + b1
 
     return (x,y)
+
+def open_config(txt):
+    with open('config/{}.txt'.format(txt)) as f:
+        lines = f.readlines()
+        return [l.strip('\n') for l in lines]
     

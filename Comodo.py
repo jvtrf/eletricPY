@@ -1,6 +1,6 @@
 import math
 from random import random
-from util import percent_line,shift_points
+from util import percent_line,shift_points,open_config
 from Interruptor import Interruptor_s1,Interruptor_s2,Interruptor_s3,Interruptor_3way,Interruptor_4way
 from Lampada import Lampada
 import UI_insert
@@ -344,9 +344,11 @@ class Square_comodo_in_dim:
     
     def clicked(self,event):
         if self.pc : self.pc.current_obj = self
-        if self.pc.state == 'lamp':
-            self.pc.set_state('normal')
-            UI_insert.new_lamp(self.pc,self.canvas)
+        for st in open_config('on_comodo_state_generate_ui'):
+            if self.pc.state == st.split('-')[0]:
+                self.pc.set_state('normal')
+                exec('UI_insert.{}(self.pc,self.canvas)'.format(st.split('-')[1]),
+                    {"UI_insert":UI_insert,"self":self})   
 
 
     
