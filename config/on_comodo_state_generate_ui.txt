@@ -1,2 +1,5 @@
+#Esse arquivo serve para configurar qual UI vai disparar
+#ao ser clicado determinado icone.
+
 lamp-new_lamp
 tom-new_tom

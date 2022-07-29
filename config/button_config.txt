@@ -1,3 +1,7 @@
+# Esse arquivo quarda a ordem dos botões da UI options_bar
+# A primeira string é o nome do estado(ou icone)
+# A segunda é texto que fica abaixo do botão.
+
 saving-SAVE
 load-LOAD
 room-ADD ROOM

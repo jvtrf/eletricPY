@@ -277,7 +277,12 @@ def intersec_lines(line1=[],line2=[]):
     return (x,y)
 
 def open_config(txt):
-    with open('config/{}.txt'.format(txt)) as f:
+    with open('config/{}.txt'.format(txt),encoding="utf8") as f:
         lines = f.readlines()
-        return [l.strip('\n') for l in lines]
+        aux = []
+        for l in lines:
+            if not l.startswith('#'):
+                aux.append(l)
+        lines = aux
+        return [l.strip('\n') for l in lines if not l.startswith('\n')]
     

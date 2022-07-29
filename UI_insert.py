@@ -1,11 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
-from turtle import update, width
 import UI_backend
+from util import open_config
 
-
-comodo_options_list = ["quarto","quarto", "banheiro", "cozinha","area de servico"]
-lamp_option_list = ['centro','centro','1/3 ⬆️','1/3 ⬇️']
+comodo_options_list = open_config('comodo_options_list')
+lamp_option_list = open_config('lamp_option_list')
+tom_option_list = open_config('tom_option_list')
+tom_lado_option_list = open_config('tom_lado_option_list')
 
 class new_comodo:
     def __init__(self,pc,master,pos = None) -> None:
@@ -135,6 +136,68 @@ class new_lamp:
                                     raio=int(self.raio.get()),pot=self.pot.get(),
                                     com=self.com.get(),circ=self.circ.get())
 
+class new_tom:
+    def __init__(self,pc = None,master = None) -> None:
+        self.pop_w = tk.Toplevel(master)
+        self.pop_w.title("Adicionar Nova Tomada")
+        self.pop_w.geometry("370x250+550+200")
+        self.pc = pc
+        self.lamp = None
+
+        main_frame = tk.Frame(self.pop_w)
+
+        frameL = tk.Frame(main_frame)
+        frameE = tk.Frame(main_frame)
+        #LABELS
+        tomL = tk.Label(frameL,text='Tipo de tomada:')
+        tomL.pack(anchor=tk.NW,pady=5)
+        ladoL = tk.Label(frameL,text='Lado:')
+        ladoL.pack(anchor=tk.NW,pady=5)
+        potL = tk.Label(frameL,text='Posição')
+        potL.pack(anchor=tk.NW,pady=5)
+        posL = tk.Label(frameL,text='Potência:')
+        posL.pack(anchor=tk.NW,pady=5)
+        #DROP DOWN MENU
+        self.tipo = tk.StringVar(master)
+        self.tipo.set('media')
+        optom = ttk.OptionMenu(frameE, self.tipo,*tom_option_list)
+        optom.config(width=15)
+        optom.pack(anchor=tk.NW,pady=5,expand=True)
+
+        self.lado = tk.StringVar(master)
+        self.lado.set('right')
+        opladotom = ttk.OptionMenu(frameE, self.lado,*tom_lado_option_list)
+        opladotom.config(width=15)
+        opladotom.pack(anchor=tk.NW,pady=5,expand=True)
+        #ENTRYS
+        self.pos  = tk.IntVar()
+        posS = ttk.Scale(frameE,from_=0,to=100,orient=tk.HORIZONTAL,command=None,variable=self.pos)
+        self.pos.set(50)
+        posS.pack(anchor=tk.NW,pady=5)
+        self.pot = tk.StringVar()
+        potE = ttk.Entry(frameE,textvariable = self.pot)
+        potE.pack(anchor=tk.NW,pady=5)
+
+        frameL.grid(row=0,column=0,padx=20,pady=20)
+        frameE.grid(row=0,column=1,padx=20,pady=20)
+
+        main_frame.pack(anchor=tk.CENTER,pady=10)
+
+        createB = ttk.Button(self.pop_w,text='ADD TUG',command = self.create_tom)
+        createB.pack()
+        pass
+    def create_tom(self):
+        self.pop_w.destroy()
+        self.pop_w.update()
+        
+        UI_backend.create_tom(self.pc.draw_canvas,self.pc,self.tipo.get(),
+        self.lado.get(),self.pos.get(),self.pot.get())
+
+    def lamp_update(self,var):
+        if self.lamp : self.lamp.die()
+        self.lamp = UI_backend.create_lamp(canvas=self.pc.draw_canvas,pc = self.pc,
+                                    raio=int(self.raio.get()),pot=self.pot.get(),
+                                    com=self.com.get(),circ=self.circ.get())
 #master = tk.Tk()
 #tk.Button(master,command=lambda: new_lamp(pc=None,master=master),text= 'teste').pack()
 

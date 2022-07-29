@@ -212,38 +212,38 @@ class Tomada_alta:
         self.arrow_height = distance(self.head,self.tail)
 
         if angle == 0 and amount >1:
-            id = self.canvas.create_plygon(shift_points(points=points[1:], y = - self.arrow_height + tail_size),width = 2)
+            id = self.canvas.create_polygon(shift_points(points=points[1:], y = - self.arrow_height + tail_size),width = 2)
             self.id_list.append(id)
             self.head = shift_points(points=points[1:], y = - self.arrow_height + tail_size)[2]
             if amount>2:
-                id = self.canvas.create_plygon(shift_points(points=points[1:], y = - self.arrow_height*2 + tail_size*2),width = 2)
+                id = self.canvas.create_polygon(shift_points(points=points[1:], y = - self.arrow_height*2 + tail_size*2),width = 2)
                 self.id_list.append(id)
                 self.head = shift_points(points=points[1:], y = - self.arrow_height*2 + tail_size*2)[2]
         
         if angle == -90 and amount >1:
-            id = self.canvas.create_line(shift_points(points=points[1:], x = - self.arrow_height + tail_size),width = 2)
+            id = self.canvas.create_polygon(shift_points(points=points[1:], x = - self.arrow_height + tail_size),width = 2)
             self.id_list.append(id)
             self.head = shift_points(points=points[1:], x = - self.arrow_height + tail_size)[2]
             if amount>2:
-                id = self.canvas.create_plygon(shift_points(points=points[1:], x = - self.arrow_height*2 + tail_size*2),width = 2)
+                id = self.canvas.create_polygon(shift_points(points=points[1:], x = - self.arrow_height*2 + tail_size*2),width = 2)
                 self.id_list.append(id)
                 self.head = shift_points(points=points[1:], x = - self.arrow_height*2 + tail_size*2)[2]
         
         if angle == 90 and amount >1:
-            id = self.canvas.create_plygon(shift_points(points=points[1:], x = + self.arrow_height - tail_size),width = 2)
+            id = self.canvas.create_polygon(shift_points(points=points[1:], x = + self.arrow_height - tail_size),width = 2)
             self.id_list.append(id)
             self.head = shift_points(points=points[1:], x = + self.arrow_height - tail_size)[2]
             if amount>2:
-                id = self.canvas.create_plygon(shift_points(points=points[1:], x = + self.arrow_height*2 - tail_size*2),width = 2)
+                id = self.canvas.create_polygon(shift_points(points=points[1:], x = + self.arrow_height*2 - tail_size*2),width = 2)
                 self.id_list.append(id)
                 self.head = shift_points(points=points[1:], x = + self.arrow_height*2 - tail_size*2)[2]
 
         if angle == 180 and amount >1:
-            id = self.canvas.create_plygon(shift_points(points=points[1:], y =  self.arrow_height - tail_size),width = 2)
+            id = self.canvas.create_polygon(shift_points(points=points[1:], y =  self.arrow_height - tail_size),width = 2)
             self.id_list.append(id)
             self.head = shift_points(points=points[1:], y = + self.arrow_height - tail_size)[2]
             if amount>2:
-                id = self.canvas.create_plygon(shift_points(points=points[1:], y = + self.arrow_height*2 - tail_size*2),width = 2)
+                id = self.canvas.create_polygon(shift_points(points=points[1:], y = + self.arrow_height*2 - tail_size*2),width = 2)
                 self.id_list.append(id)
                 self.head = shift_points(points=points[1:], y = + self.arrow_height*2 - tail_size*2)[2]
 
