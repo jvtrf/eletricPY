@@ -1,0 +1,13 @@
+#ENTRY WIDGET:
+#LABEL-entry-VARNAME--/
+
+#SCALE WIDGET:
+#LABEL-scale-VARNAME-COMMAND-/FROM-TO
+
+#DROP DOWN WIDGET:
+#LABEL-dropdown-VARNAME-/LIST
+
+Tipo de tomada: -dropdown-tipo-/media-media-baixa-alta
+Lado:           -dropdown-lado-/right-right-left-top-botton
+Posição:        -scale-pos-teste-/0-100
+Potência:       -entry-pot-/

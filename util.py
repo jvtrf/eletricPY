@@ -1,6 +1,10 @@
+from cgitb import text
 from math import sin, radians,cos,atan2,degrees,acos
 from tkinter import font
 from numpy import linspace
+import tkinter as tk
+from tkinter import ttk
+
 
 def angle_sin(ang):
     #Calcula o seno de um angulo
@@ -285,4 +289,81 @@ def open_config(txt):
                 aux.append(l)
         lines = aux
         return [l.strip('\n') for l in lines if not l.startswith('\n')]
+
+def create_tk_labels(frame,labels = [],anchor = tk.NW,pady = 5,padx = 1):
+    for l in labels:
+        label = tk.Label(frame,text = l)
+        label.pack(anchor=tk.NW,pady=pady,padx=padx)
+    pass
+
+def create_tk_drop_down(frame,self,op_list = [],var_n = '', anchor = tk.NW, pady = 5,width = 15):
+    aux_list = []
+
+    comand = '''
+self.{} = tk.StringVar()
+aux_list.append(self.{})
+                '''.format(var_n,var_n)
     
+    exec(comand,{'self':self,'tk':tk,'aux_list':aux_list})
+
+    op = ttk.OptionMenu(frame, aux_list[0],*op_list)
+    op.config(width=width)
+    op.pack(anchor=anchor,pady=pady,expand=True)
+
+    pass
+
+def create_tk_entry(frame,self,var_n = '',anchor = tk.NW, pady = 5,width = 15):
+    aux_list = []
+
+    comand = '''
+self.{} = tk.StringVar()
+aux_list.append(self.{})
+                '''.format(var_n,var_n)
+    
+    exec(comand,{'self':self,'tk':tk,'aux_list':aux_list})
+
+    en = ttk.Entry(frame,textvariable=aux_list[0])
+    en.pack(anchor=anchor,pady=pady,expand=True)
+    pass
+
+def create_tk_scale(frame,self,var_n = '',from_=0,to_=100,comando = None,anchor = tk.NW, pady = 5,width = 15):
+    aux_list = []
+
+    s = None
+
+    comand = '''
+self.{} = tk.IntVar()
+aux_list.append(self.{})
+self.{}.set(int((from_+to_/2)))
+s = ttk.Scale(frame,from_=from_,to=to_,orient=tk.HORIZONTAL,command=self.{},variable=self.pos)
+s.pack(anchor=tk.NW,pady=5)
+                '''.format(var_n,var_n,var_n,comando)
+    
+    exec(comand,{'self':self,'tk':tk,'aux_list':aux_list,'from_':from_,'to_':to_,'comando':comando,'ttk':ttk,'frame':frame})
+
+    #s = ttk.Scale(frame,from_=from_,to=to_,orient=tk.HORIZONTAL,command=comando,variable=self.pos)
+    #s.pack(anchor=tk.NW,pady=5)
+    
+    pass
+
+def create_double_frame_ui_by_text(frame1=None,frame2 = None,self = None,txt = None):
+    commands = open_config(txt)
+    label_ = [l.split('-')[0] for l in commands]
+    widget_ = [l.split('-')[1] for l in commands]
+    varname_ = [l.split('-')[2] for l in commands]
+    comm_ = [l.split('-')[3] for l in commands]
+    list_ = [l.split('/')[1].split('-') for l in commands]
+
+    create_tk_labels(frame1,label_)
+
+    for i in range(len(commands)):
+        if widget_[i] == 'dropdown' :
+            create_tk_drop_down(frame2,self=self,op_list=list_[i],var_n=varname_[i])
+        if widget_[i] == 'entry' :
+            create_tk_entry(frame2,self=self,var_n = varname_[i])
+        if widget_[i] == 'scale':
+            create_tk_scale(frame2,self=self,var_n=varname_[i],
+                            from_ = int(list_[i][0]),to_ = int(list_[i][1]),comando=comm_[i])
+    pass
+
+

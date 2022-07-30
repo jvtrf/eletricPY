@@ -2,7 +2,7 @@ import tkinter as tk
 from turtle import bgcolor
 from EletricPyCanvas import ProjectCanvas
 from Grid import Grid
-from util import intersec_lines,create_circle
+from util import intersec_lines,create_circle,create_double_frame_ui_by_text,open_config
 from Options_bar import option_bar
 from Lampada import Lampada
 import UI_backend
@@ -30,6 +30,5 @@ pc.pack()
 draw_canvas = pc.draw_canvas
 
 UI_backend.grid = Grid(pc,t_w = 2000, t_h = 2000 , shift= 70)
-
 
 master.mainloop()

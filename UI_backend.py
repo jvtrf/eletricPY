@@ -50,8 +50,8 @@ def create_tom(canvas,pc,tipo = '',lado = '',percent = 50,label="100VA",amount =
         tomada = pc.current_obj.add_left_tug(tipo,percent=percent,label=label,
                                                 amount = amount,tail_size = tail_size,
                                                 font_size = font_size)
-    if lado == 'up':
-        tomada = pc.current_obj.add_up_tug(tipo,percent=percent,label=label,
+    if lado == 'top':
+        tomada = pc.current_obj.add_top_tug(tipo,percent=percent,label=label,
                                                 amount = amount,tail_size = tail_size,
                                                 font_size = font_size)
     if lado == 'botton':

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import UI_backend
-from util import open_config
+from util import open_config,create_tk_labels,create_tk_drop_down,create_double_frame_ui_by_text
 
 comodo_options_list = open_config('comodo_options_list')
 lamp_option_list = open_config('lamp_option_list')
@@ -148,36 +148,9 @@ class new_tom:
 
         frameL = tk.Frame(main_frame)
         frameE = tk.Frame(main_frame)
-        #LABELS
-        tomL = tk.Label(frameL,text='Tipo de tomada:')
-        tomL.pack(anchor=tk.NW,pady=5)
-        ladoL = tk.Label(frameL,text='Lado:')
-        ladoL.pack(anchor=tk.NW,pady=5)
-        potL = tk.Label(frameL,text='Posição')
-        potL.pack(anchor=tk.NW,pady=5)
-        posL = tk.Label(frameL,text='Potência:')
-        posL.pack(anchor=tk.NW,pady=5)
-        #DROP DOWN MENU
-        self.tipo = tk.StringVar(master)
-        self.tipo.set('media')
-        optom = ttk.OptionMenu(frameE, self.tipo,*tom_option_list)
-        optom.config(width=15)
-        optom.pack(anchor=tk.NW,pady=5,expand=True)
 
-        self.lado = tk.StringVar(master)
-        self.lado.set('right')
-        opladotom = ttk.OptionMenu(frameE, self.lado,*tom_lado_option_list)
-        opladotom.config(width=15)
-        opladotom.pack(anchor=tk.NW,pady=5,expand=True)
-        #ENTRYS
-        self.pos  = tk.IntVar()
-        posS = ttk.Scale(frameE,from_=0,to=100,orient=tk.HORIZONTAL,command=None,variable=self.pos)
-        self.pos.set(50)
-        posS.pack(anchor=tk.NW,pady=5)
-        self.pot = tk.StringVar()
-        potE = ttk.Entry(frameE,textvariable = self.pot)
-        potE.pack(anchor=tk.NW,pady=5)
-
+        create_double_frame_ui_by_text(frameL,frameE,self=self,txt='tom_ui')
+        
         frameL.grid(row=0,column=0,padx=20,pady=20)
         frameE.grid(row=0,column=1,padx=20,pady=20)
 
@@ -198,6 +171,8 @@ class new_tom:
         self.lamp = UI_backend.create_lamp(canvas=self.pc.draw_canvas,pc = self.pc,
                                     raio=int(self.raio.get()),pot=self.pot.get(),
                                     com=self.com.get(),circ=self.circ.get())
+    def teste(self,var):
+        print(':)')
 #master = tk.Tk()
 #tk.Button(master,command=lambda: new_lamp(pc=None,master=master),text= 'teste').pack()
 
