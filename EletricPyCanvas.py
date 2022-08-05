@@ -41,6 +41,7 @@ class ProjectCanvas:
         self.current_obj = None
         self.mouse_follow = mouse_follow
         self.master = master
+        self.popup = None
 
         self.bind_all()
         pass

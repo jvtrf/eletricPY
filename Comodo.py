@@ -226,25 +226,25 @@ class Square_comodo_in_dim:
     
     def add_right_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p = percent_line(self.tr_inp,self.br_inp,percent)
-        tomada = tug(canvas=self.canvas,angle=-90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount)
+        tomada = tug(canvas=self.canvas,angle=-90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
     def add_left_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p =  percent_line(self.tl_inp,self.bl_inp,percent)
-        tomada = tug(canvas=self.canvas,angle=90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount)
+        tomada = tug(canvas=self.canvas,angle=90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
     def add_top_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p = percent_line(self.tl_inp,self.tr_inp,percent)
-        tomada = tug(canvas=self.canvas,angle=180,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount)
+        tomada = tug(canvas=self.canvas,angle=180,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
     def add_botton_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
         t_p = percent_line(self.bl_inp,self.br_inp,percent)
-        tomada = tug(canvas=self.canvas,angle=0,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount)
+        tomada = tug(canvas=self.canvas,angle=0,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
         return tomada
     
@@ -272,7 +272,7 @@ class Square_comodo_in_dim:
         fonte = fonte(self.canvas,w = dim,h = self.eT,center = t_p)
         return fonte
 
-    def add_interruptor(self,wall = 'top',inter = "s1",shift = 5, percent = 0.5,radius = 10,label1='a',label2= 'b',label3= 'c'):
+    def add_interruptor(self,wall = 'top',inter = "s1",shift = 5, percent = 0.5,radius = 10,label1='a',label2= 'b',label3= 'c',pc = None):
         if wall =='right':
             t_p = percent_line(self.tr_inp,self.br_inp,percent)
             center = (t_p[0]-radius - shift,t_p[1])
@@ -296,24 +296,21 @@ class Square_comodo_in_dim:
 
 
         if inter == "s1":
-            int = Interruptor_s1(self.canvas,center,radius,label = label1)
+            int = Interruptor_s1(self.canvas,center,radius,label = label1,pc=self.pc)
             int.set_label(shift=10,angle=angle)
         
         if inter == "s2":
-            int = Interruptor_s2(self.canvas,center,radius,label1 = label1, label2 = label2)
+            int = Interruptor_s2(self.canvas,center,radius,label1 = label1, label2 = label2,pc=self.pc)
             int.set_label(shift=10,angle=angle)
         
         if inter == "s3":
-            int = Interruptor_s3(self.canvas,center,radius,label1 = label1, label2 = label2, label3 = label3)
+            int = Interruptor_s3(self.canvas,center,radius,label1 = label1, label2 = label2, label3 = label3,pc=self.pc)
             int.set_label(shift=10)
         
         if inter == "3way":
-            int = Interruptor_3way(self.canvas,center,radius,label = label1)
+            int = Interruptor_3way(self.canvas,center,radius,label = label1,pc=self.pc)
             int.set_label(shift=10,angle=angle)
         
-        if inter == "3way":
-            int = Interruptor_3way(self.canvas,center,radius,label = label1)
-            int.set_label(shift=10,angle=angle)
 
         self.delete_list = self.delete_list+int.id_list
             

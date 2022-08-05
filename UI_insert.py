@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+
+from requests import delete
 import UI_backend
 from util import open_config,create_tk_labels,create_tk_drop_down,create_double_frame_ui_by_text
 
@@ -60,9 +62,10 @@ class new_comodo:
         createB.pack()
         pass
     
-    def create_comodo(self):
-        self.pop_w.destroy()
-        self.pop_w.update()
+    def create_comodo(self,delete = True):
+        if delete:
+            self.pop_w.destroy()
+            self.pop_w.update()
 
         UI_backend.e = float(self.esp.get()) ; UI_backend.horizontal_dim = float(self.largura.get())
         UI_backend.vertical_dim = float(self.altura.get()) ; UI_backend.x = float(self.pos[0]) 
@@ -120,10 +123,15 @@ class new_lamp:
 
         createB = ttk.Button(self.pop_w,text='ADD LAMP',command = self.create_lamp)
         createB.pack()
+
+        self.pop_w.bind_all('<Key>',self.lamp_update)
+        self.create_lamp(delete=False)
         pass
-    def create_lamp(self):
-        self.pop_w.destroy()
-        self.pop_w.update()
+    def create_lamp(self,delete=True):
+        
+        if delete:
+            self.pop_w.destroy()
+            self.pop_w.update()
         
         if self.lamp : self.lamp.die()
 
@@ -140,9 +148,9 @@ class new_tom:
     def __init__(self,pc = None,master = None) -> None:
         self.pop_w = tk.Toplevel(master)
         self.pop_w.title("Adicionar Nova Tomada")
-        self.pop_w.geometry("370x250+550+200")
+        self.pop_w.geometry("370x300+550+200")
         self.pc = pc
-        self.lamp = None
+        self.tomada = None
 
         main_frame = tk.Frame(self.pop_w)
 
@@ -156,23 +164,77 @@ class new_tom:
 
         main_frame.pack(anchor=tk.CENTER,pady=10)
 
+        self.create(delete=False)
         createB = ttk.Button(self.pop_w,text='ADD TUG',command = self.create_tom)
         createB.pack()
-        pass
-    def create_tom(self):
-        self.pop_w.destroy()
-        self.pop_w.update()
-        
-        UI_backend.create_tom(self.pc.draw_canvas,self.pc,self.tipo.get(),
-        self.lado.get(),self.pos.get(),self.pot.get())
 
-    def lamp_update(self,var):
-        if self.lamp : self.lamp.die()
-        self.lamp = UI_backend.create_lamp(canvas=self.pc.draw_canvas,pc = self.pc,
-                                    raio=int(self.raio.get()),pot=self.pot.get(),
-                                    com=self.com.get(),circ=self.circ.get())
-    def teste(self,var):
-        print(':)')
+        self.pop_w.bind_all('<Key>',self.update)
+        pass
+    
+    def create(self,delete=True):
+        if delete:
+            self.pop_w.destroy()
+            self.pop_w.update()
+        
+        if self.tomada: self.tomada.die()
+
+        self.tomada = UI_backend.create_tom(self.pc.draw_canvas,self.pc,self.tipo.get(),
+                                            self.lado.get(),self.pos.get(),self.pot.get(),
+                                            1,self.tam.get())
+
+    def update(self,var):
+
+        if self.tomada: self.tomada.die()
+        
+        self.tomada = UI_backend.create_tom(self.pc.draw_canvas,self.pc,self.tipo.get(),
+                                            self.lado.get(),self.pos.get(),self.pot.get(),
+                                             1,self.tam.get())
+
+class new_interr:
+    def __init__(self,pc = None,master = None) -> None:
+        self.pop_w = tk.Toplevel(master)
+        self.pop_w.title("Adicionar Novo interruptor")
+        self.pop_w.geometry("370x380+550+200")
+        self.pc = pc
+        self.eletric_element = None
+        self.pc.popup = self
+        main_frame = tk.Frame(self.pop_w)
+
+        frameL = tk.Frame(main_frame)
+        frameE = tk.Frame(main_frame)
+
+        create_double_frame_ui_by_text(frameL,frameE,self=self,txt='interr_ui')
+        
+        frameL.grid(row=0,column=0,padx=20,pady=20)
+        frameE.grid(row=0,column=1,padx=20,pady=20)
+
+        main_frame.pack(anchor=tk.CENTER,pady=10)
+
+        self.radius.set(10)
+
+        self.create(delete=False)
+
+        createB = ttk.Button(self.pop_w,text='ADD INTERRUP',command = self.create)
+        createB.pack()
+
+        self.pop_w.bind_all('<Key>',self.update)
+        
+        pass
+    
+    def create(self,delete=True):
+        if delete:
+            self.pop_w.destroy()
+            self.pop_w.update()
+        
+        if self.eletric_element: self.eletric_element.die()
+        self.eletric_element = UI_backend.create_interr(self.pc)
+
+    def update(self,var):
+        if self.eletric_element: self.eletric_element.die()
+        self.eletric_element = UI_backend.create_interr(self.pc)
+
+    
+    
 #master = tk.Tk()
 #tk.Button(master,command=lambda: new_lamp(pc=None,master=master),text= 'teste').pack()
 

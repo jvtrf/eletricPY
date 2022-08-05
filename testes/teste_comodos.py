@@ -22,7 +22,7 @@ canvas.pack()
 #
 quarto = sqr_com(e=0.15*scale,horizotal_dim = 3*scale, vertical_dim = 3*scale,
                     s_x = 250, s_y = 30, canvas=canvas,scale=scale)
-
+'''
 #
 #                                            BANHEIRO
 #
@@ -143,7 +143,7 @@ cond_quarto_2 = Condutor(canvas=canvas,A=lampada_quarto.top,B = tomada_2_quarto.
 cond_quarto_2.set_arm()
 
 cond_quarto_3 = Condutor(canvas=canvas,A=lampada_quarto.right,B = interruptor_1_quarto.botton,curve = 50,orientation=1)
-cond_quarto_3.set_arm(base_angle=-135)
+cond_quarto_3.set_arm(base_angle=-135)'''
 #
 #
 

@@ -1,4 +1,4 @@
-import tkinter as tk
+'''import tkinter as tk
 from Comodo import Square_comodo_in_dim
 from Lampada import Lampada
 from Janela import Janela
@@ -34,3 +34,4 @@ load_btn.place(x=35,y=0)
 
 root.mainloop()
 
+'''

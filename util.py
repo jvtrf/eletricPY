@@ -296,19 +296,19 @@ def create_tk_labels(frame,labels = [],anchor = tk.NW,pady = 5,padx = 1):
         label.pack(anchor=tk.NW,pady=pady,padx=padx)
     pass
 
-def create_tk_drop_down(frame,self,op_list = [],var_n = '', anchor = tk.NW, pady = 5,width = 15):
+def create_tk_drop_down(frame,self,op_list = [],var_n = '', anchor = tk.NW, pady = 5,width = 15,cmd = None):
     aux_list = []
-
     comand = '''
 self.{} = tk.StringVar()
 aux_list.append(self.{})
-                '''.format(var_n,var_n)
+aux_list.append(ttk.OptionMenu(frame, aux_list[0],*op_list,command = self.{}))
+                '''.format(var_n,var_n,cmd)
     
-    exec(comand,{'self':self,'tk':tk,'aux_list':aux_list})
+    exec(comand,{'self':self,'tk':tk,'aux_list':aux_list,'ttk':ttk,'op_list':op_list,'frame':frame})
 
-    op = ttk.OptionMenu(frame, aux_list[0],*op_list)
-    op.config(width=width)
-    op.pack(anchor=anchor,pady=pady,expand=True)
+    #op = ttk.OptionMenu(frame, aux_list[0],*op_list)
+    aux_list[1].config(width=width)
+    aux_list[1].pack(anchor=anchor,pady=pady,expand=True)
 
     pass
 
@@ -322,7 +322,7 @@ aux_list.append(self.{})
     
     exec(comand,{'self':self,'tk':tk,'aux_list':aux_list})
 
-    en = ttk.Entry(frame,textvariable=aux_list[0])
+    en = ttk.Entry(frame,textvariable=aux_list[0],validatecommand=lambda:print("hello"))
     en.pack(anchor=anchor,pady=pady,expand=True)
     pass
 
@@ -335,9 +335,9 @@ def create_tk_scale(frame,self,var_n = '',from_=0,to_=100,comando = None,anchor 
 self.{} = tk.IntVar()
 aux_list.append(self.{})
 self.{}.set(int((from_+to_/2)))
-s = ttk.Scale(frame,from_=from_,to=to_,orient=tk.HORIZONTAL,command=self.{},variable=self.pos)
-s.pack(anchor=tk.NW,pady=5)
-                '''.format(var_n,var_n,var_n,comando)
+{}s = ttk.Scale(frame,from_=from_,to=to_,orient=tk.HORIZONTAL,command=self.{},variable=self.{})
+{}s.pack(anchor=tk.NW,pady=5)
+                '''.format(var_n,var_n,var_n,var_n,comando,var_n,var_n)
     
     exec(comand,{'self':self,'tk':tk,'aux_list':aux_list,'from_':from_,'to_':to_,'comando':comando,'ttk':ttk,'frame':frame})
 
@@ -358,7 +358,7 @@ def create_double_frame_ui_by_text(frame1=None,frame2 = None,self = None,txt = N
 
     for i in range(len(commands)):
         if widget_[i] == 'dropdown' :
-            create_tk_drop_down(frame2,self=self,op_list=list_[i],var_n=varname_[i])
+            create_tk_drop_down(frame2,self=self,op_list=list_[i],var_n=varname_[i],cmd=comm_[i])
         if widget_[i] == 'entry' :
             create_tk_entry(frame2,self=self,var_n = varname_[i])
         if widget_[i] == 'scale':

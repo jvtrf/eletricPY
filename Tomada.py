@@ -62,7 +62,7 @@ class Tomada_baixa:
                 self.head = shift_points(points=points[1:], y = + self.arrow_height*2 - tail_size*2)[2]
 
         text = draw_text(self.canvas,(0,0),self.label,font_size) ; h,w = get_widget_box(self.canvas,text); self.canvas.delete(text)
-        self.id_list.append(text)
+
         if angle == 0 or angle == 180:
             pos = get_radius_point(self.tail,self.arrow_height*amount + 5,self.angle-90)
         else: pos = get_radius_point(self.tail,self.arrow_height*amount + w/2 +2,self.angle-90)
@@ -75,8 +75,11 @@ class Tomada_baixa:
     
     def explode(self,event):
         if self.pc.state == 'erease':
-            [self.pc.draw_canvas.delete(id) for id in self.id_list]
-
+            self.die()
+        pass
+    
+    def die(self):
+        [self.canvas.delete(d) for d in self.id_list]
         pass
 
 class Tomada_media:
@@ -168,7 +171,7 @@ class Tomada_media:
 
         
         text = draw_text(self.canvas,(0,0),self.label,font_size) ; h,w = get_widget_box(self.canvas,text); self.canvas.delete(text)
-        self.id_list.append(text)
+
         if angle == 0 or angle == 180:
             pos = get_radius_point(self.tail,self.arrow_height*amount + 5,self.angle-90)
         else: pos = get_radius_point(self.tail,self.arrow_height*amount + w/2 +2,self.angle-90)
@@ -181,8 +184,10 @@ class Tomada_media:
     
     def explode(self,event):
         if self.pc.state == 'erease':
-            [self.pc.draw_canvas.delete(id) for id in self.id_list]
-
+            self.die()
+    
+    def die(self):
+        [self.canvas.delete(d) for d in self.id_list]
         pass
 
 class Tomada_alta:
@@ -249,7 +254,6 @@ class Tomada_alta:
 
         
         text = draw_text(self.canvas,(0,0),self.label,font_size) ; h,w = get_widget_box(self.canvas,text); self.canvas.delete(text)
-        self.id_list.append(text)
 
         if angle == 0 or angle == 180:
             pos = get_radius_point(self.tail,self.arrow_height*amount + 5,self.angle-90)
@@ -263,6 +267,9 @@ class Tomada_alta:
     
     def explode(self,event):
         if self.pc.state == 'erease':
-            [self.pc.draw_canvas.delete(id) for id in self.id_list]
+            self.die()
+        pass
 
+    def die(self):
+        [self.canvas.delete(d) for d in self.id_list]
         pass

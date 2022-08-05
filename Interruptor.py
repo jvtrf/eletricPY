@@ -17,7 +17,7 @@ class Interruptor_s1:
 
         self.id_list = []
 
-        id = create_circle(self.canvas,self.center,self.raio,color='')
+        id = create_circle(self.canvas,self.center,self.raio,color='white')
         self.id_list.append(id)
         
         self.botton = center[0], center[1] + raio
@@ -40,6 +40,9 @@ class Interruptor_s1:
     def explode(self,event):
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
+
+    def die(self):
+        [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
 class Interruptor_s2:
     def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b',pc = None) -> None:
@@ -58,10 +61,10 @@ class Interruptor_s2:
         self.pc = pc
         self.id_list = []
 
-        id = create_circle(self.canvas,self.center,self.raio,color='')
+        id = create_circle(self.canvas,self.center,self.raio,color='white')
         self.id_list.append(id)
         
-        self.botton = center[0], center[1] + raio
+        self.bottom = center[0], center[1] + raio
         self.celling = center[0], center[1] - raio
         self.right = center[0] + raio, center[1]
         self.left = center[0] - raio, center[1]
@@ -90,6 +93,8 @@ class Interruptor_s2:
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
+    def die(self):
+        [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
 class Interruptor_s3:
     def __init__(self,canvas,center,raio = 5,label1 = 'a',label2='b',label3 ='c',pc = None) -> None:
@@ -109,7 +114,7 @@ class Interruptor_s3:
         self.pc = pc
         self.id_list = []
 
-        id = create_circle(self.canvas,self.center,self.raio,color='')
+        id = create_circle(self.canvas,self.center,self.raio,color='white')
         self.id_list.append(id)
         
         self.botton = center[0], center[1] + raio
@@ -147,8 +152,6 @@ class Interruptor_s3:
         pos = get_radius_point(self.center,self.raio+shift,-45)
         id = draw_text(self.canvas,pos,self.label3,self.raio)
         self.id_list.append(id)
-
-        self.id_list.append(id)
         
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
@@ -156,6 +159,8 @@ class Interruptor_s3:
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
+    def die(self):
+        [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
 class Interruptor_3way:
     def __init__(self,canvas,center,raio = 5,label = 'a',pc = None) -> None:
@@ -170,7 +175,7 @@ class Interruptor_3way:
         self.label = label
         self.canvas = canvas
         self.obj = "3way"
-        self.pc = None
+        self.pc = pc
         self.id_list = []
 
         id = create_circle(self.canvas,self.center,self.raio,color='black')
@@ -188,7 +193,7 @@ class Interruptor_3way:
         # Recebe um valor "shift" que decide a distância da label para o interruptor.
 
         pos = get_radius_point(self.center,self.raio+shift,angle)
-        draw_text(self.canvas,pos,self.label,self.raio)
+        id = draw_text(self.canvas,pos,self.label,self.raio)
 
         self.id_list.append(id)
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
@@ -197,6 +202,8 @@ class Interruptor_3way:
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
+    def die(self):
+        [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
 class Interruptor_4way:
     def __init__(self,canvas,center,raio = 5,label = 'a',pc = None) -> None:
@@ -243,3 +250,5 @@ class Interruptor_4way:
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
+    def die(self):
+        [self.pc.draw_canvas.delete(id) for id in self.id_list]

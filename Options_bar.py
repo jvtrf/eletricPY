@@ -19,9 +19,9 @@ class option_bar:
             exec(cmd2,{'self':self,'ttk':ttk})
         
         for l in open_config('button_config'):
-            exec("self.{}L = ttk.Label(self.op_frame,text='{}')".format(l.split('-')[0],l.split('-')[1]))
+            exec("self.{}L = ttk.Label(self.op_frame,text='{}',font=('Arial', 7))".format(l.split('-')[0],l.split('-')[1]))
 
-        padx = 12
+        padx = 16
         aux = 0
         for ic in [ic.split('-')[0] for ic in open_config('button_config')]:
             exec("self.{}.grid(row=0,column={},padx=padx)".format(ic,aux))

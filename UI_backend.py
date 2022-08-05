@@ -35,6 +35,7 @@ def create_lamp(canvas,pc,raio,pot,com,circ):
     return lampada
 
 def create_tom(canvas,pc,tipo = '',lado = '',percent = 50,label="100VA",amount = 1,tail_size=5 ,font_size=8):
+
     if tipo == 'media': tipo = Tomada.Tomada_media
     if tipo == 'baixa': tipo = Tomada.Tomada_baixa
     if tipo == 'alta': tipo = Tomada.Tomada_alta
@@ -42,7 +43,6 @@ def create_tom(canvas,pc,tipo = '',lado = '',percent = 50,label="100VA",amount =
     percent = percent/100
 
     if lado == 'right':
-        print("ue")
         tomada = pc.current_obj.add_right_tug(tipo,percent=percent,label=label,
                                                 amount = amount,tail_size = tail_size,
                                                 font_size = font_size)
@@ -60,3 +60,17 @@ def create_tom(canvas,pc,tipo = '',lado = '',percent = 50,label="100VA",amount =
                                                 font_size = font_size)
     
     return tomada
+
+def create_interr(pc):
+
+    interr = pc.current_obj.add_interruptor(wall    = pc.popup.wall.get(),
+                                            inter   = pc.popup.tipo.get(),
+                                            shift   = pc.popup.dis.get(),
+                                            percent = pc.popup.percent.get()/100,
+                                            radius  = pc.popup.radius.get(),
+                                            label1  = pc.popup.label1.get(),
+                                            label2  = pc.popup.label2.get(),
+                                            label3  = pc.popup.label3.get(),
+                                            pc = pc)
+    
+    return interr

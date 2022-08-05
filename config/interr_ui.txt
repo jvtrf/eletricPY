@@ -1,0 +1,17 @@
+#ENTRY WIDGET:
+#LABEL-entry-VARNAME--/
+
+#SCALE WIDGET:
+#LABEL-scale-VARNAME-COMMAND-/FROM-TO
+
+#DROP DOWN WIDGET:
+#LABEL-dropdown-VARNAME-COMMAND-/LIST
+
+Tipo de interruptor:    -dropdown-tipo-update-/s1-s1-s2-s3-3way
+Parede:                 -dropdown-wall-update-/right-right-left-top-bottom
+Posição:                -scale-percent-update-/0-100
+Distância:              -scale-dis-update-/0-20
+Tamanho:                -scale-radius-update-/5-50
+Comando1:               -entry-label1-/
+Comando2:               -entry-label2-/
+Comando3:               -entry-label3-/
