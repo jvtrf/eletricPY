@@ -1,6 +1,8 @@
 import tkinter as tk
 from Comodo import Square_comodo_in_dim as sqr_com
 from Lampada import Lampada
+from Porta import Porta
+from Janela import Janela
 import Tomada
 from Fonte import Fonte
 from Interruptor import Interruptor_s1
@@ -74,3 +76,37 @@ def create_interr(pc):
                                             pc = pc)
     
     return interr
+
+def create_door(canvas, pc, cd = 0.8, w = 0.3, side = "esquerdo", orientation = "fora", clock = "antihorário"):
+    lados = {
+        "direito": "R",
+        "esquerdo": "L",
+        "cima": "T",
+        "baixo": "B"
+    }
+    orientacoes = {
+        "fora": "O",
+        "dentro": "I"
+    }
+    sentidos = {
+        "antihorário": "A",
+        "horário": "H"
+    }
+    if cd == "":
+        cd = 0.8
+    if w == "":
+        w = 0.3
+    porta = Porta(canvas, pc.current_obj, float(cd)*scale, float(w)*scale, lados.get(side), orientacoes.get(orientation), sentidos.get(clock), pc)
+    return porta
+
+def create_window(canvas, pc, side, dim):
+    lados = {
+        "direito": "R",
+        "esquerdo": "L",
+        "cima": "T",
+        "baixo": "B"
+    }
+    if dim == "":
+        dim = 1
+    janela = Janela(canvas, pc.current_obj, float(dim)*scale , lados.get(side), pc)
+    return janela
