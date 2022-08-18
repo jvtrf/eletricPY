@@ -4,3 +4,5 @@
 lamp-new_lamp
 tom-new_tom
 interr-new_interr
+door-new_door
+window-new_window

@@ -2,7 +2,7 @@ from turtle import width
 
 
 class Lampada:
-    def __init__(self,canvas,centro,raio,pot,id,circ,pc = None) -> None:
+    def __init__(self, canvas,centro,raio,pot,id,circ, pc = None) -> None:
         self.canvas = canvas
         self.centro = centro
         self.raio = raio

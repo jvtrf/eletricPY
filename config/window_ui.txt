@@ -1,0 +1,11 @@
+#ENTRY WIDGET:
+#LABEL-entry-VARNAME--/
+
+#SCALE WIDGET:
+#LABEL-scale-VARNAME-COMMAND-/FROM-TO
+
+#DROP DOWN WIDGET:
+#LABEL-dropdown-VARNAME-/LIST
+
+Tamanho da Janela:       -entry-dim-/
+Lado:                   -dropdown-lado-update-/direito-direito-esquerdo-cima-baixo

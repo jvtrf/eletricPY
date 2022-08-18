@@ -1,12 +1,14 @@
 from random import random
 ##TODO: VERIFY IF ITS POSSIBLE TO CREATE WINDOW --- IDKH
 class Janela:
-  def __init__(self, comodo, canvas, dim, side = "L"):
+  def __init__(self, canvas, comodo, dim, side = "L", pc = None):
     ##SIDE -> L = Left; R = Right; T = Top; B = Bottom.
     self.comodo = comodo
     self.side = side
     self.dim = dim
     self.canvas = canvas
+    self.id_list = []
+    self.pc = pc
     if (side == "L"):
       self.create_left_window()
     elif (side == "R"):
@@ -14,7 +16,9 @@ class Janela:
     elif (side == "T"):
       self.create_top_window()
     elif (side == "B"):
-      self.create_botton_window()
+      self.create_bottom_window()
+    if self.pc :
+        [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
 
 
   def create_left_window(self):
@@ -27,8 +31,10 @@ class Janela:
         points = first_p,second_p
         pointss = first_p_p,second_p_p
         
-        self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
-        self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+        id = self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
+        self.id_list.append(id)
+        id = self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+        self.id_list.append(id)
 
         pass
     
@@ -40,8 +46,10 @@ class Janela:
       
       points = first_p,second_p
       pointss = first_p_p,second_p_p
-      self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
-      self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+      id = self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
+      self.id_list.append(id)
+      id = self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+      self.id_list.append(id)
   
   def create_top_window(self):
       first_p = self.comodo.top_m[0]-(self.dim/2),self.comodo.top_m[1]-(self.comodo.eT/2)  # Primeiro ponto da Janela
@@ -51,8 +59,10 @@ class Janela:
       
       points = first_p,second_p
       pointss = first_p_p,second_p_p
-      self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
-      self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+      id = self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
+      self.id_list.append(id)
+      id = self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+      self.id_list.append(id)
   
   def create_bottom_window(self):
       first_p = self.comodo.botton_m[0]-(self.dim/2),self.comodo.botton_m[1]-(self.comodo.eB/2)  # Primeiro ponto da Janela
@@ -62,11 +72,18 @@ class Janela:
       
       points = first_p,second_p
       pointss = first_p_p,second_p_p
-      self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
-      self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+      id = self.canvas.create_rectangle(points,fill='white',tag = self.generate_random())
+      self.id_list.append(id)
+      id = self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
+      self.id_list.append(id)
 
   def generate_random(self):
-    ##TODO: GENERATE WINDOW ID
       rd = str(random())
       return rd
-  
+
+  def explode(self,event = None):
+      if self.pc.state == 'erease':
+          [self.pc.draw_canvas.delete(id) for id in self.id_list]
+
+  def die(self):
+      [self.pc.draw_canvas.delete(id) for id in self.id_list]
