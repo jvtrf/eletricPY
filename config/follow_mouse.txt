@@ -9,3 +9,4 @@ tom
 interr
 space
 door
+window

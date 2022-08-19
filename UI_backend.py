@@ -5,6 +5,8 @@ from eletric_elements.Comodo import Square_comodo_in_dim as sqr_com
 from eletric_elements.Lampada import Lampada
 import eletric_elements.Tomada as Tomada
 from eletric_elements.Fonte import Fonte
+from Porta import Porta
+from Janela import Janela
 from eletric_elements.Interruptor import Interruptor_s1
 from eletric_elements.Curva import Condutor
 from util_.util import create_circle,get_widgets_values,save
@@ -168,3 +170,37 @@ def create_connection(pc):
     condutor = Condutor(pc,pc.conect_p[-2],pc.conect_p[-1],curve=curva,orientation= orientation)
     
     return condutor
+
+def create_door(canvas, pc, cd = 0.8, w = 0.3, side = "esquerdo", orientation = "fora", clock = "antihorário"):
+    lados = {
+        "direito": "R",
+        "esquerdo": "L",
+        "cima": "T",
+        "baixo": "B"
+    }
+    orientacoes = {
+        "fora": "O",
+        "dentro": "I"
+    }
+    sentidos = {
+        "antihorário": "A",
+        "horário": "H"
+    }
+    if cd == "":
+        cd = 0.8
+    if w == "":
+        w = 0.3
+    porta = Porta(canvas, pc.current_obj, float(cd)*scale, float(w)*scale, lados.get(side), orientacoes.get(orientation), sentidos.get(clock), pc)
+    return porta
+
+def create_window(canvas, pc, side, dim):
+    lados = {
+        "direito": "R",
+        "esquerdo": "L",
+        "cima": "T",
+        "baixo": "B"
+    }
+    if dim == "":
+        dim = 1
+    janela = Janela(canvas, pc.current_obj, float(dim)*scale , lados.get(side), pc)
+    return janela

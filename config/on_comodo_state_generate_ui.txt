@@ -1,9 +1,13 @@
 #Esse arquivo serve para configurar qual UI vai disparar
-#ao ser clicado determinado icone.
+#quando alguém clica no comoco com determinado state.
 #Esse arquivo é chamado na classe comodo na função clicked
+#
+#STATE-CLASSE UI
+#
 
 lamp-new_lamp
 tom-new_tom
 interr-new_interr
 space-new_space
 door-new_door
+window-new_window

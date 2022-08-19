@@ -1,0 +1,14 @@
+#ENTRY WIDGET:
+#LABEL-entry-VARNAME--/
+
+#SCALE WIDGET:
+#LABEL-scale-VARNAME-COMMAND-/FROM-TO
+
+#DROP DOWN WIDGET:
+#LABEL-dropdown-VARNAME-/LIST
+
+Largura da Porta:       -entry-width-/
+Distância a Esquerda:   -entry-cornerDistance-/
+Lado:                   -dropdown-side-update-/direito-direito-esquerdo-cima-baixo
+Orientação:             -dropdown-orientation-update-/fora-fora-dentro
+Sentido:                -dropdown-clock-update-/antihorário-antihorário-horário

@@ -130,6 +130,87 @@ class connection_ui(popup_ui):
     def element_creator(self):
         return UI_backend.create_connection(self.pc)
 
+class new_door:
+    def __init__(self,pc = None, master = None) -> None:
+        self.pop_w = tk.Toplevel(master)
+        self.pop_w.title("Adicionar Porta")
+        self.pop_w.geometry("370x250+550+200")
+        self.pc = pc
+        self.door = None
+
+        main_frame = tk.Frame(self.pop_w)
+
+        frameL = tk.Frame(main_frame)
+        frameE = tk.Frame(main_frame)
+
+        create_double_frame_ui_by_text(frameL,frameE,self=self,txt='UI/POPUP/door_ui')
+        
+        frameL.grid(row=0,column=0,padx=20,pady=20)
+        frameE.grid(row=0,column=1,padx=20,pady=20)
+
+        main_frame.pack(anchor=tk.CENTER,pady=10)
+
+        self.create(delete=False)
+
+        createB = ttk.Button(self.pop_w,text='ADD DOOR',command = self.create)
+        createB.pack()
+
+        self.pop_w.bind_all('<Key>',self.update)
+        pass
+
+    def create(self, delete = True):
+        if delete:
+            self.pop_w.destroy()
+            self.pop_w.update()
+
+        if self.door: self.door.die()
+        self.door = UI_backend.create_door(self.pc.draw_canvas,self.pc, self.cornerDistance.get(), self.width.get(),
+        self.side.get(),self.orientation.get(), self.clock.get())
+    def update(self, var):
+        if self.door: self.door.die()
+        
+        self.door = UI_backend.create_door(self.pc.draw_canvas, self.pc,  self.cornerDistance.get(), self.width.get(),
+        self.side.get(),self.orientation.get(), self.clock.get())
+    
+class new_window:
+    def __init__(self,pc = None, master = None) -> None:
+        self.pop_w = tk.Toplevel(master)
+        self.pop_w.title("Adicionar Janela")
+        self.pop_w.geometry("370x250+550+200")
+        self.pc = pc
+        self.window = None
+
+        main_frame = tk.Frame(self.pop_w)
+
+        frameL = tk.Frame(main_frame)
+        frameE = tk.Frame(main_frame)
+
+        create_double_frame_ui_by_text(frameL,frameE,self=self,txt='UI/POPUP/window_ui')
+        
+        frameL.grid(row=0,column=0,padx=20,pady=20)
+        frameE.grid(row=0,column=1,padx=20,pady=20)
+
+        main_frame.pack(anchor=tk.CENTER,pady=10)
+
+        self.create(delete=False)
+
+        createB = ttk.Button(self.pop_w,text='ADD WINDOW',command = self.create)
+        createB.pack()
+
+        self.pop_w.bind_all('<Key>',self.update)
+        pass
+
+    def create(self, delete = True):
+        if delete:
+            self.pop_w.destroy()
+            self.pop_w.update()
+
+        if self.window: self.window.die()
+        self.window = UI_backend.create_window(self.pc.draw_canvas,self.pc, self.lado.get(), self.dim.get())
+    def update(self, var):
+        if self.window: self.window.die()
+        self.window = UI_backend.create_window(self.pc.draw_canvas,self.pc, self.lado.get(), self.dim.get())
+
     
 
 
