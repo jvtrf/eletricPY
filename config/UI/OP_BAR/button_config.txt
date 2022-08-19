@@ -1,0 +1,18 @@
+# Esse arquivo quarda a ordem dos botões da UI options_bar
+# A primeira string é o nome do estado(ou icone)
+# A segunda é texto que fica abaixo do botão.
+
+newp-NEW PROJECT
+saving-SAVE
+load-LOAD
+erease-EREASE
+room-ADD ROOM
+fuse-FUSE
+join-JOIN
+window-ADD WINDOW
+door-ADD DOOR
+space-ADD SPACE
+lamp-ADD LAMP
+tom-ADD TUG
+interr-ADD INTERRUP
+condu-ADD CONECTION
