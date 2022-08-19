@@ -1,15 +1,17 @@
 import math
 from random import random
-from util import percent_line,shift_points,open_config
-from Interruptor import Interruptor_s1,Interruptor_s2,Interruptor_s3,Interruptor_3way,Interruptor_4way
-from Lampada import Lampada
-import UI_insert
+from util_.util import percent_line,shift_points,open_config,generate_key
+from eletric_elements.Interruptor import Interruptor_s1,Interruptor_s2,Interruptor_s3,Interruptor_3way,Interruptor_4way
+from eletric_elements.Lampada import Lampada
+import UI_Interface.UI_insert as UI_insert_
 
 class Square_comodo_in_dim:
     def __init__(self,eL = 0 ,eR = 0,eT = 0,eB = 0,horizotal_dim = 0,vertical_dim = 0 ,s_x = 0 ,s_y = 0 ,canvas = None,e = None,scale = 0,pc = None,tipo = None) -> None:
 
         self.delete_list = []
         self.comodo_id = str(random())
+        self.name = generate_key('comodo_') # Será utlizado pra o sistema de saving - vai guardar o nome do objeto que está sendo criado
+        self.codekey = self.name
         self.pc = pc
         self.tipo = tipo
 
@@ -224,25 +226,25 @@ class Square_comodo_in_dim:
                                         s_x = self.A[0] - horizotal_dim ,s_y = self.A[1]+ (self.left_dim - vertical_dim),canvas = self.canvas,scale = self.scale)
             return comodo
     
-    def add_right_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+    def add_right_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1,**kwargs):
         t_p = percent_line(self.tr_inp,self.br_inp,percent)
         tomada = tug(canvas=self.canvas,angle=-90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
-    def add_left_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+    def add_left_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1,**kwargs):
         t_p =  percent_line(self.tl_inp,self.bl_inp,percent)
         tomada = tug(canvas=self.canvas,angle=90,tail_pos = t_p,label=label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
-    def add_top_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+    def add_top_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1,**kwargs):
         t_p = percent_line(self.tl_inp,self.tr_inp,percent)
         tomada = tug(canvas=self.canvas,angle=180,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
         return tomada
 
-    def add_botton_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1):
+    def add_botton_tug(self,tug,percent = 0.5,label = '',tail_size = 10,font_size = 10,amount = 1,**kwargs):
         t_p = percent_line(self.bl_inp,self.br_inp,percent)
         tomada = tug(canvas=self.canvas,angle=0,tail_pos = t_p,label = label,tail_size = tail_size,font_size = font_size,amount = amount,pc = self.pc)
         self.delete_list = self.delete_list+tomada.id_list
@@ -316,7 +318,7 @@ class Square_comodo_in_dim:
             
         return int
     
-    def add_lamp(self,centro = None,raio=20,pot = "100",id = "a",circ = "1",pc = None):
+    def add_lamp(self,centro = None,raio=20,pot = "100",id = "a",circ = "1",pc = None,**kwargs):
         if centro == None: centro = self.center
         lamp = Lampada(self.canvas,centro=centro,raio=raio,pot=pot,id=id,circ=circ,pc=pc)
         self.delete_list = self.delete_list+lamp.id_list
@@ -344,8 +346,47 @@ class Square_comodo_in_dim:
         for st in open_config('on_comodo_state_generate_ui'):
             if self.pc.state == st.split('-')[0]:
                 self.pc.set_state('normal')
-                exec('UI_insert.{}(self.pc,self.canvas)'.format(st.split('-')[1]),
-                    {"UI_insert":UI_insert,"self":self})   
+                exec('UI_insert_.{}(self.pc,self.canvas)'.format(st.split('-')[1]),
+                    {"UI_insert_":UI_insert_,"self":self})   
+    
+
+    def create_botton_space(self,ld,w):
+        sp_1 = (self.dl_inp[0]+ld,self.dl_inp[1])
+        sp_2 = (sp_1[0]+w,sp_1[1]+self.eB+1)
+
+        self.canvas.create_rectangle(sp_1,sp_2,fill='white',width=0)
+        self.canvas.create_line(sp_1,(sp_1[0],sp_1[1]+self.eB+1))
+        self.canvas.create_line((sp_2[0],sp_2[1]-1),(sp_2[0],sp_2[1]-self.eB-1))
+
+        return sp_1,sp_2
+    
+    def create_top_space(self,ld,w):
+        sp_1 = (self.tl_inp[0]+ld,self.tl_inp[1]+1)
+        sp_2 = (sp_1[0]+w,sp_1[1]-self.eT-1)
+
+        self.canvas.create_rectangle(sp_1,sp_2,fill='white',width=0)
+        self.canvas.create_line((sp_1[0],sp_1[1]-1),(sp_1[0],sp_1[1]-self.eT-2))
+        self.canvas.create_line((sp_2[0],sp_2[1]),(sp_2[0],sp_2[1]+self.eT))
+
+        return sp_1,sp_2
+    
+    def create_left_space(self,td,w):
+        sp_1 = (self.tl_inp[0]+1,self.tl_inp[1]+td)
+        sp_2 = (self.tl_inp[0]-self.eL,sp_1[1]+w)
+
+        self.canvas.create_rectangle(sp_1,sp_2,fill='white',width=0)
+        self.canvas.create_line((sp_1[0]-1,sp_1[1]),(sp_1[0]-self.eL-1,sp_1[1]))
+        self.canvas.create_line((sp_1[0]-1,sp_1[1]+w),(sp_1[0]-self.eL-1,sp_1[1]+w))
+        return sp_1,sp_2
+    
+    def create_right_space(self,td,w):
+        sp_1 = (self.tr_inp[0],self.tr_inp[1]+td)
+        sp_2 = (self.tr_inp[0]+self.eR+1,sp_1[1]+w)
+
+        self.canvas.create_rectangle(sp_1,sp_2,fill='white',width=0)
+        self.canvas.create_line((sp_1[0]+1,sp_1[1]),(sp_1[0]+self.eL+1,sp_1[1]))
+        self.canvas.create_line((sp_1[0]+1,sp_1[1]+w),(sp_1[0]+self.eL+1,sp_1[1]+w))
+        return sp_1,sp_2
 
 
     

@@ -1,9 +1,8 @@
-from ctypes import resize
 import tkinter as tk
 from tkinter import ANCHOR, PhotoImage, ttk
 from PIL import Image,ImageTk
 import glob
-from util import open_config
+from util_.util import open_config
 
 class option_bar:
     def __init__(self,root,project_canvas = None) -> None:
@@ -18,12 +17,12 @@ class option_bar:
             exec(cmd1)
             exec(cmd2,{'self':self,'ttk':ttk})
         
-        for l in open_config('button_config'):
+        for l in open_config('UI/OP_BAR/button_config'):
             exec("self.{}L = ttk.Label(self.op_frame,text='{}',font=('Arial', 7))".format(l.split('-')[0],l.split('-')[1]))
 
         padx = 16
         aux = 0
-        for ic in [ic.split('-')[0] for ic in open_config('button_config')]:
+        for ic in [ic.split('-')[0] for ic in open_config('UI/OP_BAR/button_config')]:
             exec("self.{}.grid(row=0,column={},padx=padx)".format(ic,aux))
             exec("self.{}L.grid(row=1,column={})".format(ic,aux))
             aux += 1
@@ -39,6 +38,9 @@ class option_bar:
         self.pc.draw_canvas.bind('<Motion>',self.canvas_loop)
     
     def canvas_loop(self,event):
+
+        self.pc.mouse_position = (event.x,event.y)
+
         for st in self.pc.mouse_follow:
             if self.pc.state == st: 
                 self.pc.tool_mouse.update_pos(event.x+1,event.y-1)

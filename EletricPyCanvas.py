@@ -1,7 +1,7 @@
 import tkinter as tk
 from Tools import tool
-import UI_insert
-from util import open_config
+import UI_Interface.UI_insert as UI_insert
+from util_.util import open_config
 
 mouse_follow = open_config('follow_mouse')
 
@@ -34,6 +34,7 @@ class ProjectCanvas:
 
         self.frame = canvas_frame
         self.draw_canvas = project_canvas
+        self.canvas = project_canvas
         self.insert_ui = None
         self.insert_ui_id = None
         self.state = 'normal'
@@ -42,16 +43,32 @@ class ProjectCanvas:
         self.mouse_follow = mouse_follow
         self.master = master
         self.popup = None
+        self.conect_p = [] ; self.conect_n = 0
+        self.mouse_position = (0,0)
+        self.elements = []
+        self.canvas_functions = []    #Funções que são chamadas ao clicar com o esquerdo no CANVAS
+        self.change_state_functions = []   #Funções que são chamadas ao clicar com o esquerdo nos botões
+        self.popup_objects = {}
+
+        self.change_state_functions.append(self.do_nothing)
+        self.canvas_functions.append(self.do_nothing)
 
         self.bind_all()
         pass
     
     def click_left(self,event):
+        
+        [f() for f in self.canvas_functions] #executa todas as funções na lista canvas_functions
+        
         element = self.draw_canvas.gettags("current")
+
         if self.insert_ui:
             self.draw_canvas.coords(self.insert_ui_id,-100,0)
             self.insert_ui.delete()
             self.insert_ui = None
+        
+        print('\n'+'Class:EletricPyCanvas/ProjectCanvas'+"\n"+'Function:click_left'+'\n'+'x:{} ; y:{}'.format(event.x,event.y))
+        
         pass
     
     def bind_all(self):
@@ -65,11 +82,16 @@ class ProjectCanvas:
         self.frame.pack_forget()
     
     def set_state(self,bt_state):
+        
         for st in self.mouse_follow:
             self.verfiy_state(bt_state,v_state=st)
         if bt_state == 'normal':
             self.draw_canvas.delete(self.tool_mouse.label)
             self.state = 'normal'
+    
+        [f() for f in self.change_state_functions] # Executa todas as funções na lista click_buttons_functios
+
+        if bt_state == 'condu': self.connection = UI_insert.new_connection(self)
     
     def verfiy_state(self,bt_state,v_state):
         if bt_state == v_state and self.state != bt_state:
@@ -84,3 +106,6 @@ class ProjectCanvas:
         self.set_state('normal')
         insert_ui = UI_insert.new_comodo(self,self.master,pos)
         pass
+
+    def do_nothing(self):
+        None

@@ -1,0 +1,14 @@
+#ENTRY WIDGET:
+#LABEL-entry-VARNAME--/
+
+#SCALE WIDGET:
+#LABEL-scale-VARNAME-COMMAND-/FROM-TO
+
+#DROP DOWN WIDGET:
+#LABEL-dropdown-VARNAME-COMMAND-/LIST
+
+Posição:    -dropdown-lamp_pos-update-/centro-centro
+Tamanho:    -scale-raio-update-/5-200
+Potência:   -entry-pot--/
+Circuito:   -entry-circ--/
+Comando:    -entry-id--/

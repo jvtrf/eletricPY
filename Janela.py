@@ -1,5 +1,5 @@
 from random import random
-##TODO: VERIFY IF ITS POSSIBLE TO CREATE WINDOW --- IDKH
+#Todo: VERIFY IF ITS POSSIBLE TO CREATE WINDOW --- IDKH
 class Janela:
   def __init__(self, comodo, canvas, dim, side = "L"):
     ##SIDE -> L = Left; R = Right; T = Top; B = Bottom.
@@ -66,7 +66,10 @@ class Janela:
       self.canvas.create_rectangle(pointss,fill='white',tag = self.generate_random())
 
   def generate_random(self):
-    ##TODO: GENERATE WINDOW ID
+    #Todo: GENERATE WINDOW ID
       rd = str(random())
       return rd
   
+  def die(self):
+    print("fazer essa função depois")
+    pass

@@ -1,15 +1,15 @@
 import tkinter as tk
-from turtle import bgcolor
 from EletricPyCanvas import ProjectCanvas
-from Grid import Grid
-from util import intersec_lines,create_circle,create_double_frame_ui_by_text,open_config
-from Options_bar import option_bar
-from Lampada import Lampada
+from UI_Interface.Grid import Grid
+from util_.util import save
+from UI_Interface.Options_bar import option_bar
+from eletric_elements.Lampada import Lampada
 import UI_backend
-
+import json
 
 master = tk.Tk()
 master.state('zoomed')
+
 
 u_w, u_h = master.winfo_screenwidth() ,master.winfo_screenheight()
 
@@ -30,5 +30,6 @@ pc.pack()
 draw_canvas = pc.draw_canvas
 
 UI_backend.grid = Grid(pc,t_w = 2000, t_h = 2000 , shift= 70)
+
 
 master.mainloop()

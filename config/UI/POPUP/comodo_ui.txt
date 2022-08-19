@@ -1,0 +1,13 @@
+#ENTRY WIDGET:
+#LABEL-entry-VARNAME--/
+
+#SCALE WIDGET:
+#LABEL-scale-VARNAME-COMMAND-/FROM-TO
+
+#DROP DOWN WIDGET:
+#LABEL-dropdown-VARNAME-COMMAND-/LIST
+
+Tipo de Comodo: -dropdown-tipo-update-/quarto-quarto-banheiro-cozinha-area de sevico
+Espessura:      -entry-esp--/
+Largura:        -entry-largura--/
+Altura:         -entry-altura--/

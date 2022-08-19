@@ -1,11 +1,11 @@
 import tkinter as tk
-from Comodo import Square_comodo_in_dim as sqr_com
-from Lampada import Lampada
-from Tomada import Tomada_baixa,Tomada_media,Tomada_alta
-from Fonte import Fonte
-from Interruptor import Interruptor_s1
-from Curva import Condutor
-from util import create_circle
+from eletric_elements.Comodo import Square_comodo_in_dim as sqr_com
+from eletric_elements.Lampada import Lampada
+from eletric_elements.Tomada import Tomada_baixa,Tomada_media,Tomada_alta
+from eletric_elements.Fonte import Fonte
+from eletric_elements.Interruptor import Interruptor_s1
+from eletric_elements.Curva import Condutor
+from util_.util import create_circle
 
 root = tk.Tk()
 
@@ -22,7 +22,7 @@ canvas.pack()
 #
 quarto = sqr_com(e=0.15*scale,horizotal_dim = 3*scale, vertical_dim = 3*scale,
                     s_x = 250, s_y = 30, canvas=canvas,scale=scale)
-'''
+
 #
 #                                            BANHEIRO
 #
@@ -38,14 +38,6 @@ cozinha = sala.add_right(e=0.15*scale,horizotal_dim= 3*scale, vertical_dim = 3*s
 #
 #                                           - ELEMENTOS - 
 #
-#
-#                                         JANELA DO QUARTO
-#
-quarto.create_left_window(2*scale)
-#
-#                                           PORTA DA SALA
-#
-sala.create_left_indoor(tp=(3 - 0.85)*scale,w=0.8*scale,clock='b')
 #
 #                                   ESPAÇO VAZIOM NA PARADE DA COZINHA
 #
@@ -143,7 +135,7 @@ cond_quarto_2 = Condutor(canvas=canvas,A=lampada_quarto.top,B = tomada_2_quarto.
 cond_quarto_2.set_arm()
 
 cond_quarto_3 = Condutor(canvas=canvas,A=lampada_quarto.right,B = interruptor_1_quarto.botton,curve = 50,orientation=1)
-cond_quarto_3.set_arm(base_angle=-135)'''
+cond_quarto_3.set_arm(base_angle=-135)
 #
 #
 

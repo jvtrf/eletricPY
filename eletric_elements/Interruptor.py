@@ -1,4 +1,4 @@
-from util import create_circle,draw_text,get_radius_point,draw_curve
+from util_.util import create_circle,draw_text,get_radius_point,draw_curve,generate_key
 
 class Interruptor_s1:
     def __init__(self,canvas,center,raio = 5,label = 'a',pc = None) -> None:
@@ -14,6 +14,7 @@ class Interruptor_s1:
         self.canvas = canvas
         self.obj = "s1" 
         self.pc = pc
+        self.codekey = generate_key('interruptor_s1_')
 
         self.id_list = []
 
@@ -38,10 +39,16 @@ class Interruptor_s1:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
+        ''' MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+            OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
     def die(self):
+        ''' DELETA O DESENHO DO CANVAS SEM NECESSARIAMENTE ESTAR NO
+            ESTADO ->ereas<-'''
+
         [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
 class Interruptor_s2:
@@ -60,6 +67,7 @@ class Interruptor_s2:
         self.obj = "s2"
         self.pc = pc
         self.id_list = []
+        self.codekey = generate_key('interruptor_s2_')
 
         id = create_circle(self.canvas,self.center,self.raio,color='white')
         self.id_list.append(id)
@@ -90,10 +98,15 @@ class Interruptor_s2:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
+        '''MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+        OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
     def die(self):
+        ''' DELETA O DESENHO DO CANVAS SEM NECESSARIAMENTE ESTAR NO
+            ESTADO ->ereas<-'''
         [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
 class Interruptor_s3:
@@ -113,6 +126,7 @@ class Interruptor_s3:
         self.obj = "s3"
         self.pc = pc
         self.id_list = []
+        self.codekey = generate_key('interruptor_s3_')
 
         id = create_circle(self.canvas,self.center,self.raio,color='white')
         self.id_list.append(id)
@@ -156,10 +170,15 @@ class Interruptor_s3:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
+        '''MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+        OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
     def die(self):
+        ''' DELETA O DESENHO DO CANVAS SEM NECESSARIAMENTE ESTAR NO
+            ESTADO ->ereas<-'''
         [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
 class Interruptor_3way:
@@ -177,6 +196,7 @@ class Interruptor_3way:
         self.obj = "3way"
         self.pc = pc
         self.id_list = []
+        self.codekey = generate_key('interruptor_3way_')
 
         id = create_circle(self.canvas,self.center,self.raio,color='black')
         self.id_list.append(id)
@@ -199,6 +219,9 @@ class Interruptor_3way:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
+        '''MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+        OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
@@ -218,6 +241,7 @@ class Interruptor_4way:
         self.label = label
         self.canvas = canvas
         self.obj = "4way" 
+        self.codekey = generate_key('interruptor_4way_')
 
         id = create_circle(self.canvas,self.center,self.raio,color='')
         self.id_list.append(id)
@@ -243,12 +267,20 @@ class Interruptor_4way:
         id = draw_text(self.canvas,pos,self.label,self.raio)
         self.id_list.append(id)
 
+        '''BIND NO OBJETO PRA QUANDO ALGUÉM CLICAR NELE COM A BORRACHA'''
+
         self.id_list.append(id)
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
+        '''MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+        OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
     def die(self):
+        ''' DELETA O DESENHO DO CANVAS SEM NECESSARIAMENTE ESTAR NO
+            ESTADO ->ereas<-'''
+            
         [self.pc.draw_canvas.delete(id) for id in self.id_list]

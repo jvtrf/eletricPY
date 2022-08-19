@@ -7,3 +7,5 @@ condu
 lamp
 tom
 interr
+space
+door

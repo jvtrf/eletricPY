@@ -1,5 +1,4 @@
-from turtle import width
-
+from util_.util import generate_key
 
 class Lampada:
     def __init__(self,canvas,centro,raio,pot,id,circ,pc = None) -> None:
@@ -11,6 +10,7 @@ class Lampada:
         self.id = id
         self.id_list = []
         self.pc = pc
+        self.codekey = generate_key('lampada_')
         self.create()
 
     
@@ -48,11 +48,23 @@ class Lampada:
         id = self.canvas.create_text(potpos,fill="black",font="Arial "+str(int(self.raio/2)),
                         text=str(self.pot))
         self.id_list.append(id)
-
+        
+        '''BIND NO OBJETO PRA QUANDO ALGUÉM CLICAR NELE COM A BORRACHA'''
         if self.pc :
             [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
     def explode(self,event = None):
+        '''MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+        OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
+        
+        if self.pc.state == 'condu':
+            if self.pc :
+                self.pc.conect_p.append(self.centro)
+                self.pc.conect_n += 1
+
+
     def die(self):
         [self.pc.draw_canvas.delete(id) for id in self.id_list]

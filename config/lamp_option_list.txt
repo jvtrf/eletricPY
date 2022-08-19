@@ -1,9 +1,0 @@
-# Esse arquivo possui as opçoes para as posicoes da lampada.
-# São as opções quando o usuário pede para criar  uma  nova
-# lampada, a primera opção deve estar  duplicada  nas  duas
-# primeiras linhas
-
-centro
-centro
-1/3 ⬆️
-1/3 ⬇️

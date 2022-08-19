@@ -1,8 +1,9 @@
 import math
 from random import random
+from util_ import util
 
 class Porta():
-  def __init__(self, comodo, canvas, cd, w, side = "L", orientation = "O", clock = "A"):
+  def __init__(self, comodo, canvas, cd, w, side = "left", orientation = "in", clock = "A"):
     ##ORIENTATION -> O = OUT and I = IN.
     ##SIDE -> L = Left; R = Right; T = Top; B = Bottom.
     ## W-> Door Width; CD -> Corner Distance
@@ -12,28 +13,28 @@ class Porta():
     self.w = w
     self.door_w = 5
     self.clock = clock
-    if (side == "L"):
-      if (orientation == "O"):
-        ##TODO: left outdoor
+    if (side == "left"):
+      if (orientation == "out"):
+        ##Todo-> left outdoor
         pass
       else:
         self.create_left_indoor()
 
-    elif (side == "R"):
-      if (orientation == "O"):
-        ##TODO: right outdoor
+    elif (side == "right"):
+      if (orientation == "out"):
+        ##Todo-> right outdoor
         pass
       else:
         self.create_right_indoor()
 
-    elif (side == "T"):
-      if (orientation == "O"):
+    elif (side == "top"):
+      if (orientation == "out"):
         self.create_top_outdoor()
       else:
         self.create_top_indoor()
 
-    elif (side == "B"):
-      if (orientation == "O"):
+    elif (side == "botton"):
+      if (orientation == "out"):
         self.create_bottom_outdoor()
       else:
         self.create_bottom_indoor()
@@ -67,6 +68,7 @@ class Porta():
           points = [(x+sp1[0],(math.sqrt(self.w**2 - x**2))+sp1[1]+self.eB)  for x in range(int(self.w),-1,-1)]
           self.canvas.create_line(points,(points[-1][0],points[-1][1]-self.w-1),smooth = 1,tag = self.generate_random())
           self.canvas.create_rectangle((sp1[0],sp1[1]+self.eB),(sp1[0]+self.door_w,sp1[1]+self.w+self.eB),tag = self.generate_random())
+      
       if self.clock == 'H':
           points = [(-x+sp1[0]+self.w,(math.sqrt(self.w**2 - x**2))+sp1[1]+self.eB) for x in range(int(self.w),-1,-1)]
           self.canvas.create_line(points,sp2,smooth = 1,tag = self.generate_random())

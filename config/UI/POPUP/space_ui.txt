@@ -7,8 +7,6 @@
 #DROP DOWN WIDGET:
 #LABEL-dropdown-VARNAME-/LIST
 
-Tipo de tomada: -dropdown-tipo-update-/media-media-baixa-alta
 Parede:         -dropdown-lado-update-/right-right-left-top-botton
-Posição:        -scale-pos-update-/0-100
-Tamanho:        -scale-tam-update-/5-50
-Potência:       -entry-pot-/
+Distância1:     -entry-dis1--/
+Distância2:     -entry-dis2--/

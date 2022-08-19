@@ -1,4 +1,4 @@
-from util import get_mid_p
+from util_.util import get_mid_p
 class Fonte:
     def __init__(self,canvas,w =30,h = 10,center = (100,100), pc = None) -> None:
 
@@ -20,13 +20,22 @@ class Fonte:
         self.id_list.append(canvas.create_polygon(self.tl,self.br,self.bl))
 
         self.id_list.append(id)
+
+        '''BIND NO OBJETO PRA QUANDO ALGUÉM CLICAR NELE COM A BORRACHA'''
+
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
+        '''MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+        OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+        
         if self.pc.state == 'erease':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
         pass
 
     def deletar(self):
+        '''DELETA O DESENHO DO CANVAS SEM NECESSARIAMENTE ESTAR NO
+        ESTADO ->ereas<-'''
+
         for id in self.id_list:
             self.canvas.delete(id)
