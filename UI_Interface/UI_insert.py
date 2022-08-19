@@ -3,7 +3,6 @@ from tkinter import ttk
 import UI_backend
 from util_.util import open_config,create_tk_labels,create_tk_drop_down,create_double_frame_ui_by_text,polynomial_fit,generate_key
 from UI_Interface.popupModel import popup_ui
-from scipy.interpolate import interp1d
 from numpy import linspace,array
 from eletric_elements.Curva import Condutor
 

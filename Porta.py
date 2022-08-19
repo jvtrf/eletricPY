@@ -1,6 +1,6 @@
 import math
 from random import random
-from util import draw_circle_by_angle
+from util_.util import draw_circle_by_angle
 
 class Porta():
   def __init__(self, canvas, comodo, cd, w, side = "L", orientation = "O", clock = "A", pc = None):
