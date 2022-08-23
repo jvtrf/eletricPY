@@ -101,22 +101,6 @@ class new_space(popup_ui):
     def element_creator(self):
         return UI_backend.create_space(self.pc)
 
-class new_connection:
-    def __init__(self,pc) -> None:
-        self.pc = pc
-        self.points = []
-        self.condutor = None
-        pc.canvas_functions.append(self.set_point)
-        pass
-
-    def set_point(self):
-        #self.pc.conect_p.append(self.pc.mouse_position)
-        print("pontos na lista: ",self.pc.conect_p)
-        
-        if len(self.pc.conect_p) % 2 == 0:
-            
-            print("Conection")
-            connection_ui(self.pc,self.pc.master)
             
 class connection_ui(popup_ui):
     def __init__(self, pc=None, master=None, title='Título', width='370', height='250', leftdis='550', topdis='200') -> None:
@@ -124,10 +108,17 @@ class connection_ui(popup_ui):
 
         self.create_popup_ui('connection_ui')
 
+        self.A = self.pc.conect_p[-2]
+        self.B = self.pc.conect_p[-1]
+
+        self.pc.conect_p = []
+
         self.create(delete=False)
     
     def element_creator(self):
         return UI_backend.create_connection(self.pc)
+
+
 
 class new_door:
     def __init__(self,pc = None, master = None) -> None:

@@ -69,6 +69,10 @@ class ProjectCanvas:
         
         print('\n'+'Class:EletricPyCanvas/ProjectCanvas'+"\n"+'Function:click_left'+'\n'+'x:{} ; y:{}'.format(event.x,event.y))
         
+        if self.conect_n == 2:
+            self.conect_n = 0
+            UI_insert.connection_ui(self,self.master)
+            self.set_state('normal')
         pass
     
     def bind_all(self):
@@ -91,7 +95,6 @@ class ProjectCanvas:
     
         [f() for f in self.change_state_functions] # Executa todas as funções na lista click_buttons_functios
 
-        if bt_state == 'condu': self.connection = UI_insert.new_connection(self)
     
     def verfiy_state(self,bt_state,v_state):
         if bt_state == v_state and self.state != bt_state:

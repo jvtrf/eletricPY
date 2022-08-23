@@ -2,6 +2,8 @@ from util_ import util
 import tkinter as tk
 from tkinter import ttk
 
+alpha_value = 0.9
+
 class popup_ui:
     def __init__(self,pc = None,master = None, title = 'Título',width = '370',height = '250',leftdis='550',topdis='200') -> None:
         self.pop_w = tk.Toplevel(master)
@@ -10,6 +12,8 @@ class popup_ui:
                                                                         height = height,
                                                                         leftdis = leftdis,
                                                                         topdis = topdis))
+
+        self.pop_w.attributes('-alpha', alpha_value)
         self.pc = pc
         self.pc.popup = self
         self.ui_element = None

@@ -347,7 +347,8 @@ class Square_comodo_in_dim:
             if self.pc.state == st.split('-')[0]:
                 self.pc.set_state('normal')
                 exec('UI_insert_.{}(self.pc,self.canvas)'.format(st.split('-')[1]),
-                    {"UI_insert_":UI_insert_,"self":self})   
+                    {"UI_insert_":UI_insert_,"self":self})
+        
     
 
     def create_botton_space(self,ld,w):

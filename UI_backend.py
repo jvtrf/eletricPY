@@ -160,6 +160,9 @@ def create_connection(pc):
     
     pop = get_widgets_values(pc.popup.__dict__)
 
+    pop['A'] = pc.popup.__dict__['A']
+    pop['B'] = pc.popup.__dict__['B']
+
     curva = abs(pop['curva']-100)
     
     orientation = 0
@@ -167,8 +170,9 @@ def create_connection(pc):
     if pop['curva']-100 <=0 :
         orientation = -1
 
-    condutor = Condutor(pc,pc.conect_p[-2],pc.conect_p[-1],curve=curva,orientation= orientation)
-    
+    condutor = Condutor(pc,pop['A'],pop['B'],curve=curva,orientation= orientation)
+    condutor.set_arm(pop['index'])
+
     return condutor
 
 def create_door(canvas, pc, cd = 0.8, w = 0.3, side = "esquerdo", orientation = "fora", clock = "antihorário"):
