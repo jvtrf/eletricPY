@@ -10,8 +10,5 @@
 Curva:          -scale-curva-update-/0-200
 Posição:        -scale-index-update-/1-49
 Angulo:         -scale-angle-update-/0-360
-Circuito 1:     -entry-circ1--/
-Circuito 2:     -entry-circ2--/
-Circuito 3:     -entry-circ3--/
-Circuito 4:     -entry-circ4--/
-Circuito 5:     -entry-circ5--/
+Size:           -scale-size-update-/10-100
+Espaço:         -scale-space-update-/1-10

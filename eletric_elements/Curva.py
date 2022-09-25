@@ -1,9 +1,8 @@
-from msilib.schema import Class
-from operator import index
 from util_.util import percent_line,perpendicular_point,angle_sin,get_mid_p,create_circle,get_radius_point
 import tkinter as tk
 from numpy import linspace
 from eletric_elements.Element import Element
+from util_.util import draw_text,get_mid_p
 
 #root = tk.Tk()
 
@@ -45,6 +44,7 @@ class Condutor(Element):
         else: self.p1=A ; self.p2 = B
 
     def set_arm(self,index = None,arm_size = 30,hand_size = 50,base_angle = None):
+        print("Update ?")
         if index == None:
             index = int(self.smoth/2)
         if base_angle == None:
@@ -58,10 +58,125 @@ class Condutor(Element):
 
         if int(arm[0]) >= int(self.points[index][0]):
             self.id_list.append(self.canvas.create_line(arm,(arm[0]+hand_size,arm[1])))
-        else: self.id_list.append(self.canvas.create_line(arm,(arm[0]-hand_size,arm[1])))
+            self.armP1 = arm
+            self.armP2 = (arm[0]+hand_size,arm[1])
+            self.hand_points = linspace(self.armP1,self.armP2,hand_size)
+            print('1')
+        else:
+            self.id_list.append(self.canvas.create_line(arm,(arm[0]-hand_size,arm[1])))
+            self.armP1 = arm
+            self.armP2 = (arm[0]-hand_size,arm[1])
+            self.hand_points = linspace(self.armP1,self.armP2,hand_size)
+            print(2)
+        
+        
 
-         
+    
+    def draw_fase(self,size,index):
+        
+        p = self.hand_points[index]
+        faseP1 = p[0],p[1]-size
+        faseP2 = p[0],p[1]+size
 
+        id = self.canvas.create_line(faseP1,faseP2) ; self.id_list.append(id)
+        pass
+
+    def draw_neutro(self,size,index):
+        
+        p = self.hand_points[index]
+        neutroP1 = p[0]-size/2,p[1]-size
+        neutroP2 = p[0],p[1]-size
+        neutroP3 = p[0],p[1]+size
+
+        id = self.canvas.create_line(neutroP1,neutroP2,neutroP3) ; self.id_list.append(id)
+        
+        pass
+
+    def draw_terra(self,size,index):
+        
+        p = self.hand_points[index]
+        terraP1 = p[0],p[1]-size
+        terraP2 = p[0],p[1]+size
+
+        id = self.canvas.create_line(terraP1,terraP2) ; self.id_list.append(id)
+
+        terraP3 = terraP1[0]-size/2,terraP1[1]
+        terraP4 = terraP1[0]+size/2,terraP1[1]
+
+        id = self.canvas.create_line(terraP3,terraP4) ; self.id_list.append(id)
+
+        pass
+
+
+    def draw_simples(self,size,index):
+        
+        p = self.hand_points[index][0],self.hand_points[index][1]
+        simplesP1 = p[0],p[1]-size
+
+        id = self.canvas.create_line(p,simplesP1) ; self.id_list.append(id)
+        
+        pass
+
+    def draw_paralelo(self,size,index):
+        
+        p = self.hand_points[index][0],self.hand_points[index][1]
+
+        neutroP3 = p[0],p[1]-size
+        neutroP4 = p[0],p[1]
+
+        id = self.canvas.create_line(neutroP3,neutroP4) ; self.id_list.append(id)
+        
+        p = self.hand_points[index+5]
+
+        neutroP3 = p[0],p[1]-size
+        neutroP4 = p[0],p[1]
+
+        id = self.canvas.create_line(neutroP3,neutroP4) ; self.id_list.append(id)
+        
+        pass
+
+    def draw_by_text(self,text,index,size=10,space = 2,circ = "-1-  "):
+        index = index
+        p1 = self.hand_points[index][0],self.hand_points[index][1] - size*1.5
+        
+        for t in text:
+            if t == 'F':
+                self.draw_fase(size,index)
+                index += space
+            if t == 'N':
+                self.draw_neutro(size,index)
+                index += space
+            if t == 'T':
+                self.draw_terra(size,index+2)
+                index += space
+            if t == 'S':
+                self.draw_simples(size,index)
+                index += space
+            if t == 'P':
+                self.draw_paralelo(size,index)
+                index += space
+        
+        p2 = self.hand_points[index][0],self.hand_points[index][1] - size*1.5
+
+        id = draw_text(self.canvas,get_mid_p(p1,p2),circ,size=size) ; self.id_list.append(id)
+        
+        return 
+
+    def bind_all(self):
+        if self.pc :
+            [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
+    
+    def explode(self,event = None):
+        '''MATA O DESENHO CASO ALGUÉM CLIQUE NELE COM A BORRACHA.
+        OU SEJA SÓ FUNCIONA CASO O STATE SEJA ->erease<-'''
+
+        if self.pc.state == 'erease':
+            [self.pc.draw_canvas.delete(id) for id in self.id_list]
+        
+    def die(self):
+        ''' DELETA O DESENHO DO CANVAS SEM NECESSARIAMENTE ESTAR NO
+            ESTADO ->ereas<-'''
+        [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
 #cond = Condutor(canvas=canvas,A = A,B = B,orientation=1)
 #cond.set_arm(base_angle=45)

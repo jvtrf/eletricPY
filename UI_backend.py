@@ -171,7 +171,35 @@ def create_connection(pc):
         orientation = -1
 
     condutor = Condutor(pc,pop['A'],pop['B'],curve=curva,orientation= orientation)
-    condutor.set_arm(pop['index'])
+    
+    hand_size = 50
+    
+    if pop['circ2'] != "" : 
+        hand_size +=55
+    if pop['circ3'] != "" : 
+        hand_size +=55
+    if pop['circ4'] != "" : 
+        hand_size +=55
+    if pop['circ5'] != "" : 
+        hand_size +=55
+    
+    condutor.set_arm(pop['index'],base_angle=pop['angle'],hand_size = hand_size)
+    
+    index = 5
+    if pop['circ1'] != "" : 
+        condutor.draw_by_text(pop['circ1'],index=index,size=pop['size'],space = pop['space'])
+        index +=50
+    if pop['circ2'] != "" : 
+        condutor.draw_by_text(pop['circ2'],index=index,size=pop['size'],space = pop['space'])
+        index +=50
+    if pop['circ3'] != "" :
+        condutor.draw_by_text(pop['circ3'],index=index,size=pop['size'],space = pop['space'])
+        index +=50
+    if pop['circ4'] != "" :
+        condutor.draw_by_text(pop['circ4'],index=index,size=pop['size'],space = pop['space']) 
+        index +=50
+    if pop['circ5'] != "" :
+        condutor.draw_by_text(pop['circ5'],index=index,size=pop['size'],space = pop['space'])
 
     return condutor
 

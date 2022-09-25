@@ -1,7 +1,7 @@
 {
     "ui_elements": [
         {
-            "elemetkey": "comodo_LUQIFCWNFQ",
+            "elemetkey": "comodo_AEOBWNXSPN",
             "Arguments": {
                 "tipo": "quarto",
                 "esp": "0.1",
@@ -9,6 +9,1191 @@
                 "altura": "3"
             },
             "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementBCMHRYEDTF",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 3,
+                "percent": 0.84,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_AEOBWNXSPN"
+        },
+        {
+            "elemetkey": "tomada_media_elementDMROUVCHFL",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.1,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_AEOBWNXSPN"
+        },
+        {
+            "elemetkey": "comodo_TCHOCNZBDL",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementWBJSLLOZVG",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_TCHOCNZBDL"
+        },
+        {
+            "elemetkey": "tomada_media_elementYZGJVVBYJK",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_TCHOCNZBDL"
+        },
+        {
+            "elemetkey": "comodo_XUCLGBUEEF",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementMJULJLDJKL",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.88,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_XUCLGBUEEF"
+        },
+        {
+            "elemetkey": "tomada_media_elementFAMZPTIPZU",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.2,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_XUCLGBUEEF"
+        },
+        {
+            "elemetkey": "comodo_ZWFCEAWHNK",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementMPNDSVZWXY",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.83,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZWFCEAWHNK"
+        },
+        {
+            "elemetkey": "tomada_media_elementSLDLEAFQYQ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.2,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZWFCEAWHNK"
+        },
+        {
+            "elemetkey": "comodo_XKFAAWZCTL",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementTRQAHHCAID",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.86,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_XKFAAWZCTL"
+        },
+        {
+            "elemetkey": "tomada_media_elementPBCUDRIFWL",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.18,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_XKFAAWZCTL"
+        },
+        {
+            "elemetkey": "comodo_IOGRIXOHLT",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementSLETYKYIBQ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.82,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_IOGRIXOHLT"
+        },
+        {
+            "elemetkey": "tomada_media_elementLBWAIITEZW",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.13,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_IOGRIXOHLT"
+        },
+        {
+            "elemetkey": "comodo_MPDJWPKYZH",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementRYANMVDTFS",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.89,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_MPDJWPKYZH"
+        },
+        {
+            "elemetkey": "tomada_media_elementOYPGPPXIVS",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.22,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_MPDJWPKYZH"
+        },
+        {
+            "elemetkey": "comodo_BLFMAAPBBH",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "lampada_WFXHLICDZQ",
+            "Arguments": {
+                "id": "",
+                "lamp_pos": "centro",
+                "raio": 25,
+                "pot": "",
+                "circ": ""
+            },
+            "parent": "comodo_BLFMAAPBBH"
+        },
+        {
+            "elemetkey": "tomada_media_elementPKTNAPNDJY",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_BLFMAAPBBH"
+        },
+        {
+            "elemetkey": "comodo_ULBZBQAWGP",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementXJDUUOORNI",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ULBZBQAWGP"
+        },
+        {
+            "elemetkey": "tomada_media_elementWMHVLNBUNV",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.84,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ULBZBQAWGP"
+        },
+        {
+            "elemetkey": "comodo_TZJPODFPLL",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementNWUYLSXNOH",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_TZJPODFPLL"
+        },
+        {
+            "elemetkey": "tomada_media_elementBXRAISSCFG",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_TZJPODFPLL"
+        },
+        {
+            "elemetkey": "comodo_ZDAYLOCIIG",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementEHOGFHSXJK",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZDAYLOCIIG"
+        },
+        {
+            "elemetkey": "tomada_media_elementKJKWANVXXN",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.29,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZDAYLOCIIG"
+        },
+        {
+            "elemetkey": "comodo_XUKUTYJTLJ",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementZMMBZIXDGJ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_XUKUTYJTLJ"
+        },
+        {
+            "elemetkey": "tomada_media_elementXQSPWKUUPF",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_XUKUTYJTLJ"
+        },
+        {
+            "elemetkey": "comodo_RPWKQHECJO",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementCPHPNYJGIQ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_RPWKQHECJO"
+        },
+        {
+            "elemetkey": "tomada_media_elementIVUMEXXANZ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.16,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_RPWKQHECJO"
+        },
+        {
+            "elemetkey": "comodo_GFWDMZFFXQ",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementDHRVAQGRHV",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_GFWDMZFFXQ"
+        },
+        {
+            "elemetkey": "tomada_media_elementSOUJDOVTBK",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_GFWDMZFFXQ"
+        },
+        {
+            "elemetkey": "comodo_BAIQMDYYAD",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementSJVATQDKHU",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.88,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_BAIQMDYYAD"
+        },
+        {
+            "elemetkey": "tomada_media_elementHPOQTXCYKO",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.16,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_BAIQMDYYAD"
+        },
+        {
+            "elemetkey": "comodo_CZYMIGEHPT",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementLLKHFTLSGK",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_CZYMIGEHPT"
+        },
+        {
+            "elemetkey": "tomada_media_elementLSFIDSOFTS",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.19,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_CZYMIGEHPT"
+        },
+        {
+            "elemetkey": "comodo_OFHICADRLI",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementGZLNYVXVCV",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_OFHICADRLI"
+        },
+        {
+            "elemetkey": "tomada_media_elementRXBEPMJQYU",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.83,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_OFHICADRLI"
+        },
+        {
+            "elemetkey": "comodo_NUVVNRBGBF",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementKDUVQLCHIL",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_NUVVNRBGBF"
+        },
+        {
+            "elemetkey": "tomada_media_elementECNYYMEWRE",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.09,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_NUVVNRBGBF"
+        },
+        {
+            "elemetkey": "tomada_media_elementKUAXBUELBG",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.84,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_NUVVNRBGBF"
+        },
+        {
+            "elemetkey": "comodo_DHTTDTAPQO",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementTGYVPQPPFA",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_DHTTDTAPQO"
+        },
+        {
+            "elemetkey": "tomada_media_elementMVJDYKAVMZ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_DHTTDTAPQO"
+        },
+        {
+            "elemetkey": "comodo_DJIVIWEJQK",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementTPUSPHGOXK",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_DJIVIWEJQK"
+        },
+        {
+            "elemetkey": "tomada_media_elementBZPBVYBRAZ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.16,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_DJIVIWEJQK"
+        },
+        {
+            "elemetkey": "comodo_UQEHKZPLAU",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementUKJVIMJMGO",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_UQEHKZPLAU"
+        },
+        {
+            "elemetkey": "tomada_media_elementDOBDVFRLHQ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.86,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_UQEHKZPLAU"
+        },
+        {
+            "elemetkey": "comodo_AAMMYAEFOS",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementZORWINCUWK",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_AAMMYAEFOS"
+        },
+        {
+            "elemetkey": "tomada_media_elementSLTACJTFGB",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.15,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_AAMMYAEFOS"
+        },
+        {
+            "elemetkey": "comodo_JDBHIGHAHJ",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementAOUWVBXDIY",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.8,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_JDBHIGHAHJ"
+        },
+        {
+            "elemetkey": "tomada_media_elementRJZHGRSSXC",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.13,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_JDBHIGHAHJ"
+        },
+        {
+            "elemetkey": "comodo_NJULFHIVWC",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementIOBQWEHYYE",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_NJULFHIVWC"
+        },
+        {
+            "elemetkey": "tomada_media_elementQJXNFDACSJ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.19,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_NJULFHIVWC"
+        },
+        {
+            "elemetkey": "comodo_YVXNFTJEJM",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementHLUWYIBXEA",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_YVXNFTJEJM"
+        },
+        {
+            "elemetkey": "tomada_media_elementKIHDADKMEJ",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.12,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_YVXNFTJEJM"
+        },
+        {
+            "elemetkey": "comodo_FGOSZEMXKR",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementHVIMOOBSEB",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.83,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_FGOSZEMXKR"
+        },
+        {
+            "elemetkey": "tomada_media_elementSZLVWGVMLC",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.13,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_FGOSZEMXKR"
+        },
+        {
+            "elemetkey": "comodo_TOFAQYSYPO",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementCFNPHQAAPB",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.84,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_TOFAQYSYPO"
+        },
+        {
+            "elemetkey": "tomada_media_elementCWZUOWFYZR",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.16,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_TOFAQYSYPO"
+        },
+        {
+            "elemetkey": "comodo_BMFUZVVSLO",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementBNKEXDJMHG",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_BMFUZVVSLO"
+        },
+        {
+            "elemetkey": "lampada_EOCEDFAUZA",
+            "Arguments": {
+                "id": "",
+                "lamp_pos": "centro",
+                "raio": 39,
+                "pot": "",
+                "circ": ""
+            },
+            "parent": "comodo_BMFUZVVSLO"
+        },
+        {
+            "elemetkey": "comodo_GBIXLJTVTH",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementIXLQBYFETB",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_GBIXLJTVTH"
+        },
+        {
+            "elemetkey": "lampada_QPYDJRSUAE",
+            "Arguments": {
+                "id": "",
+                "lamp_pos": "centro",
+                "raio": 34,
+                "pot": "",
+                "circ": ""
+            },
+            "parent": "comodo_GBIXLJTVTH"
+        },
+        {
+            "elemetkey": "comodo_ZDQHZPULVB",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementUODUBRBGWG",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.86,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZDQHZPULVB"
+        },
+        {
+            "elemetkey": "tomada_media_elementTUDNGEZXNU",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.5,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZDQHZPULVB"
+        },
+        {
+            "elemetkey": "comodo_PAFPDYZNNR",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementDOJLIGLPFX",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.84,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_PAFPDYZNNR"
+        },
+        {
+            "elemetkey": "tomada_media_elementIIHVUKLQDV",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.18,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_PAFPDYZNNR"
+        },
+        {
+            "elemetkey": "comodo_ZOPGOJVDLG",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementYGJDFUZOHF",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.91,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZOPGOJVDLG"
+        },
+        {
+            "elemetkey": "tomada_media_elementUUNZDISETK",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.33,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_ZOPGOJVDLG"
+        },
+        {
+            "elemetkey": "comodo_THPQHMIPKC",
+            "Arguments": {
+                "tipo": "quarto",
+                "esp": "0.1",
+                "largura": "5",
+                "altura": "3"
+            },
+            "parent": false
+        },
+        {
+            "elemetkey": "tomada_media_elementESJGRZSWRD",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "right",
+                "amount": 1,
+                "percent": 0.83,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_THPQHMIPKC"
+        },
+        {
+            "elemetkey": "tomada_media_elementJLEYHSUZID",
+            "Arguments": {
+                "tipo": "media",
+                "lado": "left",
+                "amount": 1,
+                "percent": 0.18,
+                "tail_size": 10,
+                "label": "",
+                "font_size": 8
+            },
+            "parent": "comodo_THPQHMIPKC"
         }
     ]
 }

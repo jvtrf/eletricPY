@@ -64,7 +64,7 @@ class new_lamp(popup_ui):
         return UI_backend.create_lamp(self.pc)
 
 class new_tom(popup_ui):
-    def __init__(self, pc=None, master=None, title='Título', width='370', height='250', leftdis='550', topdis='200') -> None:
+    def __init__(self, pc=None, master=None, title='Título', width='370', height='400', leftdis='850', topdis='100') -> None:
         super().__init__(pc, master, title, width, height, leftdis, topdis)
 
         self.create_popup_ui('tom_ui')
@@ -103,15 +103,33 @@ class new_space(popup_ui):
 
             
 class connection_ui(popup_ui):
-    def __init__(self, pc=None, master=None, title='Título', width='370', height='250', leftdis='550', topdis='200') -> None:
+    def __init__(self, pc=None, master=None, title='Título', width='370', height='250', leftdis='500', topdis='200') -> None:
         super().__init__(pc, master, title, width, height, leftdis, topdis)
 
         self.create_popup_ui('connection_ui')
+        self.frameA = tk.Frame(self.main_frame)
+        self.frameB = tk.Frame(self.main_frame)
+        
+        create_double_frame_ui_by_text(self.frameA,self.frameB,self=self,txt='UI/POPUP/connection_entrys')
+        self.frameA.grid(row=0,column=2,padx=20,pady=20)
+        self.frameB.grid(row=0,column=3,padx=20,pady=20)
 
         self.A = self.pc.conect_p[-2]
         self.B = self.pc.conect_p[-1]
 
         self.pc.conect_p = []
+
+        if self.A[0]>self.B[0]: self.p1 = self.B ; self.p2 = self.A
+        else: self.p1=self.A ; self.p2 = self.B
+
+        
+        if self.p1[1]> self.p2[1]:
+            self.angle.set(45)
+        else:
+            self.angle.set(135)
+
+        self.size.set(10)
+        self.space.set(10)
 
         self.create(delete=False)
     

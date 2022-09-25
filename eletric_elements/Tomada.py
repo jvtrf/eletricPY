@@ -141,8 +141,6 @@ class Tomada_baixa(Tomada):
                 
         
         self.bind_left(self.explode)
-        self.bind_enter(self.ui_feedback_enter)
-        self.bind_leave(self.ui_feedback_leave)
 
 
 class Tomada_media(Tomada):
@@ -177,7 +175,6 @@ class Tomada_media(Tomada):
             
             self.create_line(self.points,width=self.width)
 
-            self.create_polygon(self.points[3:-1],fill='white',width=self.width,outline='black')
             self.create_polygon(self.points[1:4],fill='black',width=self.width,outline='black')
 
             id = self.id_list[-1]
@@ -245,5 +242,3 @@ class Tomada_alta(Tomada):
                 self.pc.canvas.move(id,-self.triangle_height*n,0)  
 
         self.bind_left(self.explode) 
-        self.bind_enter(self.ui_feedback_enter)
-        self.bind_leave(self.ui_feedback_leave)
