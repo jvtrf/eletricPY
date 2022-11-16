@@ -74,7 +74,7 @@ class Tomada_baixa:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
-        if self.pc.state == 'erease':
+        if self.pc.state == 'erase':
             self.die()
         pass
     
@@ -183,7 +183,7 @@ class Tomada_media:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
-        if self.pc.state == 'erease':
+        if self.pc.state == 'erase':
             self.die()
     
     def die(self):
@@ -266,7 +266,7 @@ class Tomada_alta:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
-        if self.pc.state == 'erease':
+        if self.pc.state == 'erase':
             self.die()
         pass
 

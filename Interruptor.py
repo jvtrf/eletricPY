@@ -38,7 +38,7 @@ class Interruptor_s1:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
-        if self.pc.state == 'erease':
+        if self.pc.state == 'erase':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
 
     def die(self):
@@ -90,7 +90,7 @@ class Interruptor_s2:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
-        if self.pc.state == 'erease':
+        if self.pc.state == 'erase':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
     def die(self):
@@ -247,7 +247,7 @@ class Interruptor_4way:
         if self.pc : [self.canvas.tag_bind(id,"<Button-1>",self.explode) for id in self.id_list]
     
     def explode(self,event):
-        if self.pc.state == 'erease':
+        if self.pc.state == 'erase':
             [self.pc.draw_canvas.delete(id) for id in self.id_list]
     
     def die(self):
