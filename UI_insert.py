@@ -3,7 +3,7 @@ from tkinter import ttk
 
 
 import UI_backend
-from util import open_config,create_tk_labels,create_tk_drop_down,create_double_frame_ui_by_text
+from util import open_config,create_tk_labels,create_tk_drop_down,create_double_frame_ui_by_text, create_double_frame_ui_only_text
 
 comodo_options_list = open_config('comodo_options_list')
 lamp_option_list = open_config('lamp_option_list')
@@ -314,7 +314,26 @@ class new_window:
     def update(self, var):
         if self.window: self.window.die()
         self.window = UI_backend.create_window(self.pc.draw_canvas,self.pc, self.lado.get(), self.dim.get())
-    
+
+class open_info:
+    def __init__(self,pc = None, master = None) -> None:
+        self.pop_w = tk.Toplevel(master)
+        self.pop_w.title("INFORMAÇÕES")
+        self.pop_w.geometry("370x250+550+200")
+        self.pc = pc
+        self.window = None
+
+        main_frame = tk.Frame(self.pop_w)
+
+        frameL = tk.Frame(main_frame)
+        frameE = tk.Frame(main_frame)
+
+        create_double_frame_ui_only_text(frameL,frameE,self=self,txt='informacoes')
+        
+        frameL.grid(row=0,column=0,padx=20,pady=20)
+        frameE.grid(row=0,column=1,padx=20,pady=20)
+
+        main_frame.pack(anchor=tk.CENTER,pady=10)
 #master = tk.Tk()
 #tk.Button(master,command=lambda: new_lamp(pc=None,master=master),text= 'teste').pack()
 
