@@ -125,7 +125,6 @@ class new_lamp:
         createB.pack()
 
         self.pop_w.bind_all('<Key>',self.lamp_update)
-        self.create_lamp(delete=False)
         pass
     def create_lamp(self,delete=True):
         
